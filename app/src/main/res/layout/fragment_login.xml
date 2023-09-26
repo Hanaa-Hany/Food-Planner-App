@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F8F5"
+    android:background="@color/gray"
     tools:context=".LoginFragment">
 
     <ImageView
@@ -16,6 +16,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_350sdp"
         android:layout_margin="@dimen/_20sdp"
@@ -39,7 +40,7 @@
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/welcome_back"
-                android:textColor="@color/orange"
+                android:textColor="@color/pink"
                 app:layout_constraintStart_toStartOf="parent"
 
                 app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +66,7 @@
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_email_login"
+                    android:id="@+id/et_email_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -75,7 +76,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_password"
+                android:id="@+id/layout_password_sign_up"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_password_login"
+                    android:id="@+id/et_confirm_password_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -109,15 +110,16 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:backgroundTint="@color/orange"
+                android:backgroundTint="@color/pink"
                 android:padding="@dimen/_5sdp"
                 android:text="@string/login"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_16ssp"
                 app:cornerRadius="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="@id/layout_password"
-                app:layout_constraintStart_toStartOf="@id/layout_password"
-                app:layout_constraintTop_toBottomOf="@id/layout_password" />
+                app:layout_constraintEnd_toEndOf="@id/layout_password_sign_up"
+                app:layout_constraintStart_toStartOf="@id/layout_password_sign_up"
+                app:layout_constraintTop_toBottomOf="@id/layout_password_sign_up" />
+
 
             <TextView
                 android:id="@+id/tv_forget_password"
@@ -146,7 +148,7 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/sign_up"
-                android:textColor="@color/orange"
+                android:textColor="@color/pink"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tv_dont_have_account"
                 app:layout_constraintTop_toBottomOf="@id/tv_forget_password" />
@@ -156,6 +158,46 @@
 
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card"
+        android:text="OR SignIn with "
+        android:gravity="center"
+        android:id="@+id/tv_sign"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_sign"
+        android:layout_marginStart="@dimen/_50sdp"
+        android:text="Google"
+        android:backgroundTint="@color/pink"
+        android:textAllCaps="false"
+        android:drawableStart="@drawable/ic_google"
+        android:id="@+id/btn_google"
+        app:cornerRadius="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/btn_google"
+        app:layout_constraintTop_toBottomOf="@id/tv_sign"
+        android:layout_marginStart="@dimen/_50sdp"
+        android:text="Guest"
+        app:cornerRadius="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
+        android:backgroundTint="@color/pink"
+        android:textAllCaps="false"
+        android:drawableStart="@drawable/ic_google"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

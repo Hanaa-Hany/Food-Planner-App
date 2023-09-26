@@ -46,11 +46,17 @@ public class LoginFragment extends Fragment {
                 navController.navigate(R.id.action_loginFragment_to_signUpFragment);
             }
         });
+        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_loginFragment_to_forgetPasswordFragment);
+            }
+        });
     }
 
     private void initViews() {
-        textInputEditTextEmail=getView().findViewById(R.id.et_email_login);
-        textInputEditTextPassword=getView().findViewById(R.id.et_password_login);
+        textInputEditTextEmail=getView().findViewById(R.id.et_email_sign_up);
+        textInputEditTextPassword=getView().findViewById(R.id.et_confirm_password_sign_up);
         materialButtonLogin=getView().findViewById(R.id.btn_login);
         textViewForgotPassword=getView().findViewById(R.id.tv_forget_password);
         textViewSignUp=getView().findViewById(R.id.tv_sign_up);
