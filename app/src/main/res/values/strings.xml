@@ -2,4 +2,11 @@
     <string name="app_name">Food Planner App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="dont_have_an_account_sign_up">dont have an account ? </string>
+    <string name="sign_up">Sign up</string>
+    <string name="welcome_back">Welcome back! You\'re just a tap away from something delicious</string>
 </resources>
