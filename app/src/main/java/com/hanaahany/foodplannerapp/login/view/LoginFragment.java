@@ -1,5 +1,6 @@
-package com.hanaahany.foodplannerapp;
+package com.hanaahany.foodplannerapp.login.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.hanaahany.foodplannerapp.HomeActivity;
+import com.hanaahany.foodplannerapp.R;
 
 
 public class LoginFragment extends Fragment {
@@ -50,6 +53,13 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.action_loginFragment_to_forgetPasswordFragment);
+            }
+        });
+        materialButtonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         });
     }

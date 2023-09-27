@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.hanaahany.foodplannerapp.LoginFragment"
+        android:name="com.hanaahany.foodplannerapp.login.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -28,12 +28,16 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.hanaahany.foodplannerapp.SignUpFragment"
+        android:name="com.hanaahany.foodplannerapp.signup.view.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/forgetPasswordFragment"
-        android:name="com.hanaahany.foodplannerapp.ForgetPasswordFragment"
+        android:name="com.hanaahany.foodplannerapp.forgetpassword.view.ForgetPasswordFragment"
         android:label="fragment_forget_password"
         tools:layout="@layout/fragment_forget_password" />
 </navigation>
