@@ -1,4 +1,4 @@
-package com.hanaahany.foodplannerapp;
+package com.hanaahany.foodplannerapp.signup.view;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hanaahany.foodplannerapp.R;
 
 public class SignUpFragment extends Fragment {
 
