@@ -3,6 +3,9 @@ package com.hanaahany.foodplannerapp.network;
 import android.content.Context;
 
 import com.hanaahany.foodplannerapp.model.MealResponse;
+import com.hanaahany.foodplannerapp.model.categorymodel.CategoryResponse;
+
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,17 +36,35 @@ public class MealsClient implements RemoteSource{
     }
 
     @Override
-    public void makeNetworkCall(NetworkCallBack networkCallBack) {
-        mealServices.getSingleRandomMeal().enqueue(new Callback<MealResponse>() {
+    public void makeNetworkCall(NetworkCallBack networkCallBack,int id) {
+        switch (id){
+            case 1:
+                mealServices.getSingleRandomMeal().enqueue(new Callback<MealResponse>() {
+                    @Override
+                    public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                        networkCallBack.onSuccess(response.body().getMeals());
+                    }
+
+                    @Override
+                    public void onFailure(Call<MealResponse> call, Throwable t) {
+                        networkCallBack.onFailure(t.getLocalizedMessage());
+                    }
+                });
+       break;
+        case 2:
+
+        mealServices.getAllCategories().enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
-                networkCallBack.onSuccess(response.body().getMeals());
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+                networkCallBack.onSuccess(response.body().getCategories());
             }
 
             @Override
-            public void onFailure(Call<MealResponse> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 networkCallBack.onFailure(t.getLocalizedMessage());
+
             }
         });
+        }
     }
 }
