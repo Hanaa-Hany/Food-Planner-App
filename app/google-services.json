@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605864558402",
+    "project_id": "itih-81e4c",
+    "storage_bucket": "itih-81e4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605864558402:android:f143622afb28e6ad99d2db",
+        "android_client_info": {
+          "package_name": "com.hanaahany.foodplannerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm5oFsK0C87OiPqFaP-4mUd9nchjdjGk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

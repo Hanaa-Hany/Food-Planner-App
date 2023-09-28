@@ -20,6 +20,6 @@ public class Repository implements RepositoryInterface{
 
     @Override
     public void makeNetworkCall(NetworkCallBack networkCallBack) {
-        remoteSource.makeNetworkCall(networkCallBack);
+        remoteSource.makeNetworkCall(networkCallBack,2);
     }
 }
