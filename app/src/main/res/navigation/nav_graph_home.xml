@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.hanaahany.foodplannerapp.search.view.SearchFragment"
+        android:name="com.hanaahany.foodplannerapp.search.category.view.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 </navigation>

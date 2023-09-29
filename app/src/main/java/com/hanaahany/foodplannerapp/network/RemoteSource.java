@@ -1,5 +1,7 @@
 package com.hanaahany.foodplannerapp.network;
 
 public interface RemoteSource {
-    void makeNetworkCall(NetworkCallBack networkCallBack,int id);
+    void makeNetworkCallCategories(NetworkCallBack networkCallBack,int id);
+//    void makeNetworkCallCountries(NetworkCallBack networkCallBack);
+//    void makeNetworkSingleMeal(NetworkCallBack networkCallBack);
 }
