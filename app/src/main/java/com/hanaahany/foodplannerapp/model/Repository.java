@@ -18,8 +18,20 @@ public class Repository implements RepositoryInterface{
         return repository;
     }
 
+
+
     @Override
-    public void makeNetworkCall(NetworkCallBack networkCallBack) {
-        remoteSource.makeNetworkCall(networkCallBack,2);
+    public void makeNetworkCallCategory(NetworkCallBack networkCallBack,int id) {
+        remoteSource.makeNetworkCallCategories(networkCallBack,id);
     }
+
+//    @Override
+//    public void makeNetworkCallCountry(NetworkCallBack networkCallBack) {
+//        remoteSource.makeNetworkCallCountries(networkCallBack);
+//    }
+//
+//    @Override
+//    public void makeNetworkCallSingleMeal(NetworkCallBack networkCallBack) {
+//        remoteSource.makeNetworkSingleMeal(networkCallBack);
+//    }
 }

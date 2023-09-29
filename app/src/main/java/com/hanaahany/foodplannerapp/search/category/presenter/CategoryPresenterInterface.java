@@ -1,5 +1,7 @@
-package com.hanaahany.foodplannerapp.search.presenter;
+package com.hanaahany.foodplannerapp.search.category.presenter;
 
 public interface CategoryPresenterInterface {
     void getCategory();
+
+
 }

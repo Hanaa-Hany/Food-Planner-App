@@ -1,9 +1,10 @@
-package com.hanaahany.foodplannerapp.search.presenter;
+package com.hanaahany.foodplannerapp.search.category.presenter;
 
 import com.hanaahany.foodplannerapp.model.Repository;
-import com.hanaahany.foodplannerapp.model.categorymodel.Category;
+import com.hanaahany.foodplannerapp.search.category.model.Category;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;
-import com.hanaahany.foodplannerapp.search.view.SearchViewInterface;
+import com.hanaahany.foodplannerapp.search.category.view.SearchViewInterface;
+import com.hanaahany.foodplannerapp.search.country.model.Country;
 
 import java.util.List;
 
@@ -21,15 +22,20 @@ public class CategoryPresenter implements NetworkCallBack,CategoryPresenterInter
     public void onSuccess(List<?> list) {
 
         _view.showData((List<Category>) list);
+      //  _view.showCountry((List<Country>) list);
     }
 
     @Override
     public void onFailure(String errorMassage) {
-
+//        _repo.makeNetworkCallCategory(this);
     }
 
     @Override
     public void getCategory() {
-        _repo.makeNetworkCall(this);
+        _repo.makeNetworkCallCategory(this,2);
     }
+
+
+
+
 }

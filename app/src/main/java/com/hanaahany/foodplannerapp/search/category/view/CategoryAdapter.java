@@ -1,4 +1,4 @@
-package com.hanaahany.foodplannerapp.search.view;
+package com.hanaahany.foodplannerapp.search.category.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
-import com.hanaahany.foodplannerapp.model.categorymodel.Category;
+import com.hanaahany.foodplannerapp.search.category.model.Category;
 
 import java.util.List;
 
