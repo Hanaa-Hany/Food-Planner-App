@@ -1,5 +1,6 @@
 package com.hanaahany.foodplannerapp.search.country.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hanaahany.foodplannerapp.HomeActivity;
 import com.hanaahany.foodplannerapp.R;
 import com.hanaahany.foodplannerapp.search.country.model.Country;
 
@@ -19,10 +24,12 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     List<Country>countryList;
     Context context;
+    OnClickCountryInterface onClickCountryInterface;
 
-    public CountryAdapter(List<Country> countryList, Context context) {
+    public CountryAdapter(List<Country> countryList, Context context, OnClickCountryInterface onClickCountryInterface) {
         this.countryList = countryList;
         this.context = context;
+        this.onClickCountryInterface=onClickCountryInterface;
     }
 
     @NonNull
@@ -37,6 +44,14 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
         Country country=countryList.get(position);
         holder.textViewName.setText(country.getNameOfCountry());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickCountryInterface.onItemClicked(country.getNameOfCountry());
+//                NavController navController=Navigation.findNavController((Activity) context,R.id.nav_host_fragment_home);
+//                navController.navigate(R.id.action_searchFragment_to_countryMealsFragment);
+            }
+        });
     }
 
     @Override
