@@ -18,10 +18,12 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     List<Ingredients> ingredientsList;
     Context context;
+    OnIngredientCallListener onIngredientCallListener;
 
-    public IngredientsAdapter(List<Ingredients> ingredientsList, Context context) {
+    public IngredientsAdapter(List<Ingredients> ingredientsList, Context context, OnIngredientCallListener onIngredientCallListener) {
         this.ingredientsList = ingredientsList;
         this.context = context;
+        this.onIngredientCallListener=onIngredientCallListener;
     }
 
     @NonNull
@@ -36,6 +38,12 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         Ingredients ingredients=ingredientsList.get(position);
         holder.textViewIngredients.setText(ingredients.getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onIngredientCallListener.sendName(ingredients.getName());
+            }
+        });
     }
 
     @Override
@@ -49,6 +57,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewIngredients=itemView.findViewById(R.id.tv_country_item);
+
         }
     }
 }

@@ -26,4 +26,7 @@ public interface MealServices {
     @GET("filter.php")
     Call <CountryMealsResponse>filterByArea(@Query("a")String country);
 
+    @GET("filter.php")
+    Call <CountryMealsResponse>filterByIngredient(@Query("i")String country);
+
 }
