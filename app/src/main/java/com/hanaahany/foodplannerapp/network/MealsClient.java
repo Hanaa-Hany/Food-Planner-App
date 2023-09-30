@@ -1,5 +1,11 @@
 package com.hanaahany.foodplannerapp.network;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMealsResponse;
+import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragment;
 import com.hanaahany.foodplannerapp.model.MealResponse;
 import com.hanaahany.foodplannerapp.search.category.model.CategoryResponse;
 import com.hanaahany.foodplannerapp.search.country.model.CountryResponse;
@@ -16,7 +22,7 @@ public class MealsClient implements RemoteSource {
     private final String BASE_URL = "https://www.themealdb.com/api/json/v1/1/";
     private static MealsClient mealsClient = null;
     private MealServices mealServices;
-
+    private static final String TAG = "MealsClient";
     private MealsClient() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -99,6 +105,20 @@ public class MealsClient implements RemoteSource {
                     }
                 });
                 break;
+            case 5:
+                Log.i(TAG, "makeNetworkCallCategories: "+CountryMealsFragment.NAME_OF_COUNTRY);
+                mealServices.filterByArea(CountryMealsFragment.NAME_OF_COUNTRY).enqueue(new Callback<CountryMealsResponse>() {
+                    @Override
+                    public void onResponse(Call<CountryMealsResponse> call, Response<CountryMealsResponse> response) {
+                        networkCallBack.onSuccess(response.body().getCountryMealsList());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<CountryMealsResponse> call, Throwable t) {
+
+                    }
+                });
 
         }
 

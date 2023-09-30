@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -25,6 +26,7 @@ import com.hanaahany.foodplannerapp.search.country.presenter.CountryPresenter;
 import com.hanaahany.foodplannerapp.search.country.presenter.CountryPresenterInterface;
 import com.hanaahany.foodplannerapp.search.country.view.CountryAdapter;
 import com.hanaahany.foodplannerapp.search.country.view.CountryViewInterface;
+import com.hanaahany.foodplannerapp.search.country.view.OnClickCountryInterface;
 import com.hanaahany.foodplannerapp.search.ingredients.model.Ingredients;
 import com.hanaahany.foodplannerapp.search.ingredients.presenter.IngredientPresenter;
 import com.hanaahany.foodplannerapp.search.ingredients.presenter.IngredientPresenterInterface;
@@ -35,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment implements SearchViewInterface , IngredientViewInterface , CountryViewInterface {
+public class SearchFragment extends Fragment implements SearchViewInterface , IngredientViewInterface , CountryViewInterface , OnClickCountryInterface {
 
     private static final String TAG = "SearchFragment";
     RecyclerView recyclerViewCotegories, recyclerViewCountries,recyclerViewIngredients;
@@ -113,8 +115,17 @@ public class SearchFragment extends Fragment implements SearchViewInterface , In
 
     @Override
     public void showCountry(List<Country> list) {
-        countryAdapter = new CountryAdapter(list,getContext());
+        countryAdapter = new CountryAdapter(list,getContext(),this);
         recyclerViewCountries.setAdapter(countryAdapter);
         Log.i(TAG, "showIngredient: "+list.size());
+    }
+
+
+    @Override
+    public void onItemClicked(String nameOfCountry) {
+        com.hanaahany.foodplannerapp.search.category.view.SearchFragmentDirections.ActionSearchFragmentToCountryMealsFragment action=
+                SearchFragmentDirections.actionSearchFragmentToCountryMealsFragment(nameOfCountry);
+        Navigation.findNavController(getView()).navigate(action);
+        Toast.makeText(getContext(), nameOfCountry, Toast.LENGTH_SHORT).show();
     }
 }

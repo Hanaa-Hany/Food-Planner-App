@@ -18,5 +18,18 @@
         android:id="@+id/searchFragment"
         android:name="com.hanaahany.foodplannerapp.search.category.view.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_countryMealsFragment"
+            app:destination="@id/countryMealsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countryMealsFragment"
+        android:name="com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragment"
+        android:label="fragment_country_meals"
+        tools:layout="@layout/fragment_country_meals" >
+        <argument
+            android:name="nameOfCountry"
+            app:argType="string" />
+    </fragment>
 </navigation>
