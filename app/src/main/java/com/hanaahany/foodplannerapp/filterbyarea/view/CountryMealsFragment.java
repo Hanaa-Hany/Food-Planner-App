@@ -48,8 +48,7 @@ public class CountryMealsFragment extends Fragment implements CountryMealsViewIn
         //getView make an error
         initViews();
         countryMealsPresenterInterface= new CountryMealsPresenter(this,Repository.getInstance(MealsClient.getInstance()));
-        //countryMealsPresenterInterface.getCountryMeals();
-        bottomNavigation = getActivity().findViewById(R.id.bottomNavigation);
+
         if (getArguments()!=null){
             NAME_OF_COUNTRY= CountryMealsFragmentArgs.fromBundle(getArguments()).getNameOfCountry();
         }
@@ -79,6 +78,7 @@ public class CountryMealsFragment extends Fragment implements CountryMealsViewIn
     }
 
     private void initViews() {
+        bottomNavigation = getActivity().findViewById(R.id.bottomNavigation);
         recyclerView=getView().findViewById(R.id.recycler_country_meals);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));
 

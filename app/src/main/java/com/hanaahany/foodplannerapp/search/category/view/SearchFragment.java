@@ -32,12 +32,13 @@ import com.hanaahany.foodplannerapp.search.ingredients.presenter.IngredientPrese
 import com.hanaahany.foodplannerapp.search.ingredients.presenter.IngredientPresenterInterface;
 import com.hanaahany.foodplannerapp.search.ingredients.view.IngredientViewInterface;
 import com.hanaahany.foodplannerapp.search.ingredients.view.IngredientsAdapter;
+import com.hanaahany.foodplannerapp.search.ingredients.view.OnIngredientCallListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment implements SearchViewInterface , IngredientViewInterface , CountryViewInterface , OnClickCountryInterface {
+public class SearchFragment extends Fragment implements SearchViewInterface , IngredientViewInterface , CountryViewInterface , OnClickCountryInterface, OnIngredientCallListener {
 
     private static final String TAG = "SearchFragment";
     RecyclerView recyclerViewCotegories, recyclerViewCountries,recyclerViewIngredients;
@@ -108,7 +109,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface , In
 
     @Override
     public void showIngredient(List<Ingredients> list) {
-        ingredientsAdapter = new IngredientsAdapter(list,getContext());
+        ingredientsAdapter = new IngredientsAdapter(list,getContext(),this);
         recyclerViewIngredients.setAdapter(ingredientsAdapter);
         Log.i(TAG, "showIngredient: "+list.size());
     }
@@ -127,5 +128,13 @@ public class SearchFragment extends Fragment implements SearchViewInterface , In
                 SearchFragmentDirections.actionSearchFragmentToCountryMealsFragment(nameOfCountry);
         Navigation.findNavController(getView()).navigate(action);
         Toast.makeText(getContext(), nameOfCountry, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void sendName(String nameOfIngredient) {
+        SearchFragmentDirections.ActionSearchFragmentToIngredientMealsFragment action=
+                SearchFragmentDirections.actionSearchFragmentToIngredientMealsFragment(nameOfIngredient);
+        Navigation.findNavController(getView()).navigate(action);
+        Toast.makeText(getContext(), nameOfIngredient, Toast.LENGTH_SHORT).show();
     }
 }

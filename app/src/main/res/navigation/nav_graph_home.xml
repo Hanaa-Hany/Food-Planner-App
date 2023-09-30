@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_searchFragment_to_countryMealsFragment"
             app:destination="@id/countryMealsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_ingredientMealsFragment"
+            app:destination="@id/ingredientMealsFragment" />
     </fragment>
     <fragment
         android:id="@+id/countryMealsFragment"
@@ -31,5 +34,12 @@
         <argument
             android:name="nameOfCountry"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientMealsFragment"
+        android:name="com.hanaahany.foodplannerapp.filterbyingredient.view.IngredientMealsFragment"
+        android:label="fragment_ingredient"
+        tools:layout="@layout/fragment_ingredient" >
+        <argument android:name="nameOfIngredients" />
     </fragment>
 </navigation>

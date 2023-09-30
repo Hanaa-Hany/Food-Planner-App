@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMealsResponse;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragment;
+import com.hanaahany.foodplannerapp.filterbyingredient.view.IngredientMealsFragment;
 import com.hanaahany.foodplannerapp.model.MealResponse;
 import com.hanaahany.foodplannerapp.search.category.model.CategoryResponse;
 import com.hanaahany.foodplannerapp.search.country.model.CountryResponse;
@@ -108,6 +109,21 @@ public class MealsClient implements RemoteSource {
             case 5:
                 Log.i(TAG, "makeNetworkCallCategories: "+CountryMealsFragment.NAME_OF_COUNTRY);
                 mealServices.filterByArea(CountryMealsFragment.NAME_OF_COUNTRY).enqueue(new Callback<CountryMealsResponse>() {
+                    @Override
+                    public void onResponse(Call<CountryMealsResponse> call, Response<CountryMealsResponse> response) {
+                        networkCallBack.onSuccess(response.body().getCountryMealsList());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<CountryMealsResponse> call, Throwable t) {
+
+                    }
+                });
+
+            case 6:
+                Log.i(TAG, "makeNetworkCallCategories: "+CountryMealsFragment.NAME_OF_COUNTRY);
+                mealServices.filterByIngredient(IngredientMealsFragment.NAME_OF_Ingredient).enqueue(new Callback<CountryMealsResponse>() {
                     @Override
                     public void onResponse(Call<CountryMealsResponse> call, Response<CountryMealsResponse> response) {
                         networkCallBack.onSuccess(response.body().getCountryMealsList());
