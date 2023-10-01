@@ -1,13 +1,9 @@
 package com.hanaahany.foodplannerapp.filterbyarea.presenter;
 
-import android.widget.Toast;
-
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragment;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;
-import com.hanaahany.foodplannerapp.search.category.presenter.CategoryPresenterInterface;
-import com.hanaahany.foodplannerapp.search.category.view.SearchViewInterface;
 
 import java.util.List;
 

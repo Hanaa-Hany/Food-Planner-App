@@ -1,4 +1,4 @@
-package com.hanaahany.foodplannerapp.filterbyarea.view;
+package com.hanaahany.foodplannerapp.home.category.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,18 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
-import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
+import com.hanaahany.foodplannerapp.home.category.model.Category;
 
 import java.util.List;
 
-public class CountryMealsAdapter extends RecyclerView.Adapter<CountryMealsAdapter.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
-    List<CountryMeals>countryMealsList;
     Context context;
+    List<Category>arrayList;
+    OnCategoryCallListener onCategoryCallListener;
 
-    public CountryMealsAdapter(List<CountryMeals> countryMealsList, Context context) {
-        this.countryMealsList = countryMealsList;
+    public CategoryAdapter(Context context, List<Category> arrayList,OnCategoryCallListener onCategoryCallListener) {
         this.context = context;
+        this.arrayList = arrayList;
+        this.onCategoryCallListener=onCategoryCallListener;
     }
 
     @NonNull
@@ -35,16 +37,22 @@ public class CountryMealsAdapter extends RecyclerView.Adapter<CountryMealsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        CountryMeals countryMeals=countryMealsList.get(position);
-        holder.textViewTitleOfCategory.setText(countryMeals.getName());
-        Glide.with(context).load(countryMeals.getImage())
+        Category category=arrayList.get(position);
+        holder.textViewTitleOfCategory.setText(category.getCategoryName());
+        Glide.with(context).load(category.getCategoryImage())
                 .into(holder.imageViewCategory);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCategoryCallListener.sendNameOfCategory(category.getCategoryName());
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return countryMealsList.size();
+        return arrayList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

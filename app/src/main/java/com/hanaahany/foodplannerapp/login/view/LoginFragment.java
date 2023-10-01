@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.hanaahany.foodplannerapp.HomeActivity;
+import com.hanaahany.foodplannerapp.ui.HomeActivity;
 import com.hanaahany.foodplannerapp.R;
 
 
