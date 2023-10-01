@@ -28,10 +28,15 @@ import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.MealResponse;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.MealsClient;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MealDetailsFragment extends Fragment implements MealDetailsViewInterface{
@@ -39,7 +44,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     private MeowBottomNavigation bottomNavigation;
     ImageView imageView;
     TextView textViewNameOfMeal,textViewNameOfArea,textViewInstruction;
-    VideoView videoView;
+    YouTubePlayerView youTubePlayerView;
     public static String ID_OF_MEAL;
     IngredientAdapter ingredientAdapter;
     MealPresenterInterface mealPresenterInterface;
@@ -72,7 +77,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         textViewNameOfMeal=getView().findViewById(R.id.tv_name_of_detail_meal);
         textViewNameOfArea=getView().findViewById(R.id.tv_country_details_meal);
         textViewInstruction=getView().findViewById(R.id.tv_instruction_details_meal);
-        videoView=getView().findViewById(R.id.video_cook_meal);
+        youTubePlayerView=getView().findViewById(R.id.youtube_player_view);
         recyclerViewIngredients=getView().findViewById(R.id.recycler_ingredient_meal_details);
 
         recyclerViewIngredients.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
@@ -87,6 +92,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         String instruction=list.get(0).getInstructions();
         String image=list.get(0).getImage();
         String videoUrl=list.get(0).getYoutube();
+        String videoId = extractVideoId(videoUrl);
         Log.i(TAG, "showMealDetails: "+name+area+instruction+image+videoUrl);
         Glide.with(getContext()).load(image)
                 .into(imageView);
@@ -99,6 +105,21 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         Log.i(TAG, "showMealDetails: "+ingredientPojos.size());
         ingredientAdapter.notifyDataSetChanged();
         recyclerViewIngredients.setAdapter(ingredientAdapter);
+//        if (!list.get(0).getYoutube().equals("")) {
+//            videoArray = meals.get(0).getStrYoutube().split("=");
+//            videoString = videoArray[1];
+//        } else {
+//            videoString = "";
+//        }
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                super.onReady(youTubePlayer);
+                youTubePlayer.loadVideo(videoId, 0);
+                youTubePlayer.pause();
+
+            }
+        });
 
     }
     @Override
@@ -138,5 +159,15 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         }
 
         return myIngredientList;
+    }
+    private String extractVideoId(String videoUrl) {
+        String videoId = null;
+        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|\\/v%2F)[^#\\&\\?\\n]*";
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(videoUrl); //url is youtube url for which you want to extract video id.
+        if (matcher.find()) {
+            videoId = matcher.group();
+        }
+        return videoId;
     }
 }
