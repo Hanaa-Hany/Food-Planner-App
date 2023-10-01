@@ -74,7 +74,7 @@ public class CountryMealsFragment extends Fragment implements CountryMealsViewIn
     public void showData(List<CountryMeals> list) {
         countryMealsAdapter=new CountryMealsAdapter(list,getContext());
         recyclerView.setAdapter(countryMealsAdapter);
-        Log.i(TAG, "showDataCountryMeals: "+list.size());
+//        Log.i(TAG, "showDataCountryMeals: "+list.size());
     }
 
     private void initViews() {

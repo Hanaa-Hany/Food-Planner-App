@@ -12,49 +12,6 @@
     tools:context=".search.category.view.SearchFragment"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search By Categories"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_16ssp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycler_category"
-        tools:listitem="@layout/category_item"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search By Countries"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_16ssp"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycler_country"
-        tools:listitem="@layout/country_item"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search By Ingredients"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_16ssp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycler_ingredient"
-        tools:listitem="@layout/ingredient_item"/>
 
 
 
