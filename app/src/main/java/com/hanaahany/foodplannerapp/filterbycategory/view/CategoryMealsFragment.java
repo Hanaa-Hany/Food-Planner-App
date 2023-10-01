@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +19,8 @@ import com.hanaahany.foodplannerapp.R;
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
 import com.hanaahany.foodplannerapp.filterbyarea.presenter.CountryMealsPresenterInterface;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsAdapter;
+import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragmentDirections;
+import com.hanaahany.foodplannerapp.filterbyarea.view.OnItemClicked;
 import com.hanaahany.foodplannerapp.filterbycategory.presenter.CategoryMealsPresenter;
 import com.hanaahany.foodplannerapp.filterbycategory.presenter.CategoryMealsPresenterInterface;
 import com.hanaahany.foodplannerapp.filterbyingredient.presenter.IngredientMealsPresenter;
@@ -29,7 +32,7 @@ import com.hanaahany.foodplannerapp.network.MealsClient;
 import java.util.List;
 
 
-public class CategoryMealsFragment extends Fragment implements CategoryMealsViewInterface{
+public class CategoryMealsFragment extends Fragment implements CategoryMealsViewInterface, OnItemClicked {
     private MeowBottomNavigation bottomNavigation;
     CategoryMealsPresenterInterface categoryMealsPresenterInterface;
     RecyclerView recyclerView;
@@ -65,9 +68,11 @@ public class CategoryMealsFragment extends Fragment implements CategoryMealsView
 
     @Override
     public void showCategoryMeals(List<CountryMeals> list) {
-        countryMealsAdapter=new CountryMealsAdapter(list,getContext());
-        recyclerView.setAdapter(countryMealsAdapter);
-        Log.i(TAG, "showDataCountryMeals: "+list.size());
+        if (list!=null) {
+            countryMealsAdapter = new CountryMealsAdapter(list, getContext(),this);
+            recyclerView.setAdapter(countryMealsAdapter);
+            Log.i(TAG, "showDataCountryMeals: " + list.size());
+        }
     }
     @Override
     public void onResume() {
@@ -81,5 +86,14 @@ public class CategoryMealsFragment extends Fragment implements CategoryMealsView
         super.onPause();
         bottomNavigation.setVisibility(View.VISIBLE);
 
+    }
+
+    //send id to details fragment
+    @Override
+    public void sendId(String id) {
+        CategoryMealsFragmentDirections.ActionCategoryMealsFragmentToMealDetailsFragment action=
+                CategoryMealsFragmentDirections.actionCategoryMealsFragmentToMealDetailsFragment(id);
+        Navigation.findNavController(getView()).navigate(action);
+        Log.i(TAG, "onClick: "+id);
     }
 }

@@ -35,21 +35,19 @@ import com.hanaahany.foodplannerapp.home.category.model.Category;
 import com.hanaahany.foodplannerapp.home.category.presenter.CategoryPresenter;
 import com.hanaahany.foodplannerapp.home.category.presenter.CategoryPresenterInterface;
 import com.hanaahany.foodplannerapp.home.category.view.CategoryAdapter;
-import com.hanaahany.foodplannerapp.search.category.view.SearchViewInterface;
 import com.hanaahany.foodplannerapp.home.country.model.Country;
 import com.hanaahany.foodplannerapp.home.country.presenter.CountryPresenter;
 import com.hanaahany.foodplannerapp.home.country.presenter.CountryPresenterInterface;
 import com.hanaahany.foodplannerapp.home.country.view.CountryAdapter;
 import com.hanaahany.foodplannerapp.home.country.view.CountryViewInterface;
 import com.hanaahany.foodplannerapp.home.country.view.OnClickCountryInterface;
-import com.hanaahany.foodplannerapp.home.ingredients.model.Ingredients;
+import com.hanaahany.foodplannerapp.model.Ingredients;
 import com.hanaahany.foodplannerapp.home.ingredients.presenter.IngredientPresenter;
 import com.hanaahany.foodplannerapp.home.ingredients.presenter.IngredientPresenterInterface;
 import com.hanaahany.foodplannerapp.home.ingredients.view.IngredientViewInterface;
 import com.hanaahany.foodplannerapp.home.ingredients.view.IngredientsAdapter;
 import com.hanaahany.foodplannerapp.home.ingredients.view.OnIngredientCallListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -157,10 +155,21 @@ public class HomeFragment extends Fragment implements CategoryFragmentViewInterf
     public void showMeal(List<Meal> list) {
       String image=  list.get(0).getImage();
        String name= list.get(0).getNameOfMeal();
+       String id=list.get(0).getId();
         Log.i(TAG, "showMeal: "+name+image);
         Glide.with(getContext()).load(image)
                 .into(imageViewSingleMeal);
         textViewNameOfSingleMeal.setText(name);
+        imageViewSingleMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HomeFragmentDirections.ActionHomeFragmentToMealDetailsFragment action=
+                        HomeFragmentDirections.actionHomeFragmentToMealDetailsFragment(id);
+                Navigation.findNavController(getView()).navigate(action);
+                Log.i(TAG, "onClick: "+id);
+                Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -168,6 +177,7 @@ public class HomeFragment extends Fragment implements CategoryFragmentViewInterf
         HomeFragmentDirections.ActionHomeFragmentToCategoryMealsFragment action=
                 HomeFragmentDirections.actionHomeFragmentToCategoryMealsFragment(name);
         Navigation.findNavController(getView()).navigate(action);
+
         Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
     }
 }

@@ -4,7 +4,7 @@ import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMealsResponse;
 import com.hanaahany.foodplannerapp.model.MealResponse;
 import com.hanaahany.foodplannerapp.home.category.model.CategoryResponse;
 import com.hanaahany.foodplannerapp.home.country.model.CountryResponse;
-import com.hanaahany.foodplannerapp.home.ingredients.model.IngredientsResponse;
+import com.hanaahany.foodplannerapp.model.IngredientsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -31,6 +31,6 @@ public interface MealServices {
     @GET("filter.php")
     Call <CountryMealsResponse>filterByCategory(@Query("c")String category);
     @GET("lookup.php")
-    Call <CountryMealsResponse>getDetailsOfMeal(@Query("i")String category);
+    Call <MealResponse>getDetailsOfMeal(@Query("i")String category);
 
 }

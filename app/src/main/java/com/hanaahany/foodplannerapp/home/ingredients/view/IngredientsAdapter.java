@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hanaahany.foodplannerapp.R;
-import com.hanaahany.foodplannerapp.home.ingredients.model.Ingredients;
+import com.hanaahany.foodplannerapp.model.Ingredients;
 
 import java.util.List;
 

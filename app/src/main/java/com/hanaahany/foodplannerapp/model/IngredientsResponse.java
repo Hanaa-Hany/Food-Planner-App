@@ -1,7 +1,7 @@
-package com.hanaahany.foodplannerapp.home.ingredients.model;
+package com.hanaahany.foodplannerapp.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.hanaahany.foodplannerapp.home.ingredients.model.Ingredients;
+import com.hanaahany.foodplannerapp.model.Ingredients;
 
 import java.util.List;
 

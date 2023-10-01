@@ -20,10 +20,12 @@ public class CountryMealsAdapter extends RecyclerView.Adapter<CountryMealsAdapte
 
     List<CountryMeals>countryMealsList;
     Context context;
+    OnItemClicked onItemClicked;
 
-    public CountryMealsAdapter(List<CountryMeals> countryMealsList, Context context) {
+    public CountryMealsAdapter(List<CountryMeals> countryMealsList, Context context,OnItemClicked onItemClicked) {
         this.countryMealsList = countryMealsList;
         this.context = context;
+        this.onItemClicked=onItemClicked;
     }
 
     @NonNull
@@ -40,6 +42,12 @@ public class CountryMealsAdapter extends RecyclerView.Adapter<CountryMealsAdapte
         holder.textViewTitleOfCategory.setText(countryMeals.getName());
         Glide.with(context).load(countryMeals.getImage())
                 .into(holder.imageViewCategory);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClicked.sendId(countryMeals.getId());
+            }
+        });
     }
 
     @Override
