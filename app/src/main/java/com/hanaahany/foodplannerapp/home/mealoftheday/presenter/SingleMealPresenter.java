@@ -1,10 +1,6 @@
 package com.hanaahany.foodplannerapp.home.mealoftheday.presenter;
 
-import com.hanaahany.foodplannerapp.home.ingredients.model.Ingredients;
-import com.hanaahany.foodplannerapp.home.ingredients.presenter.IngredientPresenterInterface;
-import com.hanaahany.foodplannerapp.home.ingredients.view.IngredientViewInterface;
 import com.hanaahany.foodplannerapp.home.mealoftheday.view.MealViewInterface;
-import com.hanaahany.foodplannerapp.home.view.HomeFragment;
 import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;

@@ -1,6 +1,5 @@
 package com.hanaahany.foodplannerapp.home.mealoftheday.view;
 
-import com.hanaahany.foodplannerapp.home.ingredients.model.Ingredients;
 import com.hanaahany.foodplannerapp.model.Meal;
 
 import java.util.List;

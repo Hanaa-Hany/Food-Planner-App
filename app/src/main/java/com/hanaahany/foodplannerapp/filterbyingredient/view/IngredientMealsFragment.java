@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,15 +19,17 @@ import com.hanaahany.foodplannerapp.R;
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsAdapter;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragmentArgs;
+import com.hanaahany.foodplannerapp.filterbyarea.view.OnItemClicked;
 import com.hanaahany.foodplannerapp.filterbyingredient.presenter.IngredientMealsPresenter;
 import com.hanaahany.foodplannerapp.filterbyingredient.presenter.IngredientMealsPresenterInterface;
+import com.hanaahany.foodplannerapp.home.view.HomeFragmentDirections;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.MealsClient;
 
 import java.util.List;
 
 
-public class IngredientMealsFragment extends Fragment implements IngredientMealsViewInterface {
+public class IngredientMealsFragment extends Fragment implements IngredientMealsViewInterface, OnItemClicked {
     private MeowBottomNavigation bottomNavigation;
     IngredientMealsPresenterInterface ingredientPresenterInterface;
     RecyclerView recyclerView;
@@ -64,9 +67,11 @@ public class IngredientMealsFragment extends Fragment implements IngredientMeals
 
     @Override
     public void getIngredientMeals(List<CountryMeals> list) {
-        countryMealsAdapter=new CountryMealsAdapter(list,getContext());
-        recyclerView.setAdapter(countryMealsAdapter);
-        Log.i(TAG, "showDataCountryMeals: "+list.size());
+        if (list!=null) {
+            countryMealsAdapter = new CountryMealsAdapter(list, getContext(),this);
+            recyclerView.setAdapter(countryMealsAdapter);
+            Log.i(TAG, "showDataCountryMeals: " + list.size());
+        }
     }
     @Override
     public void onResume() {
@@ -83,4 +88,11 @@ public class IngredientMealsFragment extends Fragment implements IngredientMeals
     }
 
 
+    @Override
+    public void sendId(String id) {
+        IngredientMealsFragmentDirections.ActionIngredientMealsFragmentToMealDetailsFragment action=
+                IngredientMealsFragmentDirections.actionIngredientMealsFragmentToMealDetailsFragment(id);
+        Navigation.findNavController(getView()).navigate(action);
+        Log.i(TAG, "onClick: "+id);
+    }
 }

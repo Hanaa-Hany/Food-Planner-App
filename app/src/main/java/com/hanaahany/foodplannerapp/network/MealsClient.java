@@ -6,10 +6,11 @@ import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMealsResponse;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragment;
 import com.hanaahany.foodplannerapp.filterbycategory.view.CategoryMealsFragment;
 import com.hanaahany.foodplannerapp.filterbyingredient.view.IngredientMealsFragment;
+import com.hanaahany.foodplannerapp.mealdetails.view.MealDetailsFragment;
 import com.hanaahany.foodplannerapp.model.MealResponse;
 import com.hanaahany.foodplannerapp.home.category.model.CategoryResponse;
 import com.hanaahany.foodplannerapp.home.country.model.CountryResponse;
-import com.hanaahany.foodplannerapp.home.ingredients.model.IngredientsResponse;
+import com.hanaahany.foodplannerapp.model.IngredientsResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -146,6 +147,21 @@ public class MealsClient implements RemoteSource {
 
                     @Override
                     public void onFailure(Call<CountryMealsResponse> call, Throwable t) {
+
+                    }
+                });
+                break;
+            case 8:
+                Log.i(TAG, "makeNetworkCallCategories: "+CountryMealsFragment.NAME_OF_COUNTRY);
+                mealServices.getDetailsOfMeal(MealDetailsFragment.ID_OF_MEAL).enqueue(new Callback<MealResponse>() {
+                    @Override
+                    public void onResponse(Call<MealResponse> call, Response<MealResponse> response) {
+                        networkCallBack.onSuccess(response.body().getMeals());
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<MealResponse> call, Throwable t) {
 
                     }
                 });

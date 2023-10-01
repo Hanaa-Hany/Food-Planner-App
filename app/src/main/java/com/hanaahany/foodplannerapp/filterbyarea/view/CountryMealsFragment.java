@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,14 +18,14 @@ import com.hanaahany.foodplannerapp.R;
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
 import com.hanaahany.foodplannerapp.filterbyarea.presenter.CountryMealsPresenter;
 import com.hanaahany.foodplannerapp.filterbyarea.presenter.CountryMealsPresenterInterface;
+import com.hanaahany.foodplannerapp.home.view.HomeFragmentDirections;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.MealsClient;
-import com.hanaahany.foodplannerapp.search.category.view.SearchFragment;
 
 import java.util.List;
 
 
-public class CountryMealsFragment extends Fragment implements CountryMealsViewInterface {
+public class CountryMealsFragment extends Fragment implements CountryMealsViewInterface,OnItemClicked {
 
     private MeowBottomNavigation bottomNavigation;
     RecyclerView recyclerView;
@@ -72,9 +73,11 @@ public class CountryMealsFragment extends Fragment implements CountryMealsViewIn
 
     @Override
     public void showData(List<CountryMeals> list) {
-        countryMealsAdapter=new CountryMealsAdapter(list,getContext());
-        recyclerView.setAdapter(countryMealsAdapter);
-//        Log.i(TAG, "showDataCountryMeals: "+list.size());
+        if (list!=null) {
+            countryMealsAdapter = new CountryMealsAdapter(list, getContext(),this);
+            recyclerView.setAdapter(countryMealsAdapter);
+            Log.i(TAG, "showDataCountryMeals: " + list.size());
+        }
     }
 
     private void initViews() {
@@ -82,5 +85,15 @@ public class CountryMealsFragment extends Fragment implements CountryMealsViewIn
         recyclerView=getView().findViewById(R.id.recycler_country_meals);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2,RecyclerView.VERTICAL,false));
 
+    }
+
+
+    //send id to details Fragment
+    @Override
+    public void sendId(String id) {
+        CountryMealsFragmentDirections.ActionCountryMealsFragmentToMealDetailsFragment action=
+                CountryMealsFragmentDirections.actionCountryMealsFragmentToMealDetailsFragment(id);
+        Navigation.findNavController(getView()).navigate(action);
+        Log.i(TAG, "onClick: "+id);
     }
 }

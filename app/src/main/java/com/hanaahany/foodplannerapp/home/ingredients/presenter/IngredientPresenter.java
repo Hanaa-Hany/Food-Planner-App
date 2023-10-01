@@ -2,7 +2,7 @@ package com.hanaahany.foodplannerapp.home.ingredients.presenter;
 
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;
-import com.hanaahany.foodplannerapp.home.ingredients.model.Ingredients;
+import com.hanaahany.foodplannerapp.model.Ingredients;
 import com.hanaahany.foodplannerapp.home.ingredients.view.IngredientViewInterface;
 
 import java.util.List;

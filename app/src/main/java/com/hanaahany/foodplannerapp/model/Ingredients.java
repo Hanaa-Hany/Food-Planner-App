@@ -1,4 +1,4 @@
-package com.hanaahany.foodplannerapp.home.ingredients.model;
+package com.hanaahany.foodplannerapp.model;
 
 import android.view.View;
 import android.view.ViewGroup;
