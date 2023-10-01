@@ -87,6 +87,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation("com.google.firebase:firebase-auth")
 
+    //Youtube video
+//    implementation 'com.google.android.youtube:youtube-android-player:10.0.5'
+
 
 
 }

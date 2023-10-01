@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_homeFragment_to_categoryMealsFragment"
             app:destination="@id/categoryMealsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailsFragment2"
+            app:destination="@id/mealDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -40,6 +46,9 @@
         <argument
             android:name="nameOfCountry"
             app:argType="string" />
+        <action
+            android:id="@+id/action_countryMealsFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/ingredientMealsFragment"
@@ -47,6 +56,9 @@
         android:label="fragment_ingredient"
         tools:layout="@layout/fragment_ingredient" >
         <argument android:name="nameOfIngredients" />
+        <action
+            android:id="@+id/action_ingredientMealsFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryMealsFragment"
@@ -55,6 +67,17 @@
         tools:layout="@layout/fragment_category_meals" >
         <argument
             android:name="nameOfCategory"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryMealsFragment_to_mealDetailsFragment"
+            app:destination="@id/mealDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealDetailsFragment"
+        android:name="com.hanaahany.foodplannerapp.mealdetails.view.MealDetailsFragment"
+        android:label="MealDetailsFragment" >
+        <argument
+            android:name="detailsOfMeal"
             app:argType="string" />
     </fragment>
 </navigation>
