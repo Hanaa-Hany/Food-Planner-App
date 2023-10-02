@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsAdapter;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsFragmentArgs;
@@ -53,7 +54,7 @@ public class IngredientMealsFragment extends Fragment implements IngredientMeals
             NAME_OF_Ingredient= IngredientMealsFragmentArgs.fromBundle(getArguments()).getNameOfIngredients();
 
         }
-        ingredientPresenterInterface = new IngredientMealsPresenter(this, Repository.getInstance(MealsClient.getInstance()));
+        ingredientPresenterInterface = new IngredientMealsPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
         ingredientPresenterInterface.getIngredient();
 
     }

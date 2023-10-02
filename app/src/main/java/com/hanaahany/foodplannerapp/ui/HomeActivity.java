@@ -37,13 +37,21 @@ public class HomeActivity extends AppCompatActivity {
                 switch(model.getId())
                 {
                     case 1:
+
                         navController.navigate(R.id.action_searchFragment_to_homeFragment);
+                       // navController.navigate(R.id.action_favFragment_to_homeFragment);
+
 
                         break;
                     case 2:
                         navController.navigate(R.id.action_homeFragment_to_searchFragment);
+                       // navController.navigate(R.id.action_favFragment_to_searchFragment);
+
                         break;
                     case 3:
+                        navController.navigate(R.id.action_homeFragment_to_favFragment);
+                     //   navController.navigate(R.id.action_searchFragment_to_favFragment);
+
                         break;
                 }
                 return null;

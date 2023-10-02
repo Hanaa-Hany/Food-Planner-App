@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
 import com.hanaahany.foodplannerapp.filterbyarea.presenter.CountryMealsPresenter;
 import com.hanaahany.foodplannerapp.filterbyarea.presenter.CountryMealsPresenterInterface;
@@ -48,7 +49,7 @@ public class CountryMealsFragment extends Fragment implements CountryMealsViewIn
         super.onViewCreated(view, savedInstanceState);
         //getView make an error
         initViews();
-        countryMealsPresenterInterface= new CountryMealsPresenter(this,Repository.getInstance(MealsClient.getInstance()));
+        countryMealsPresenterInterface= new CountryMealsPresenter(this,Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
 
         if (getArguments()!=null){
             NAME_OF_COUNTRY= CountryMealsFragmentArgs.fromBundle(getArguments()).getNameOfCountry();

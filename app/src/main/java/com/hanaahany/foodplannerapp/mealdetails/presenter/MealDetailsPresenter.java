@@ -22,6 +22,11 @@ public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInter
     }
 
     @Override
+    public void insertMealToFavourite(Meal meal) {
+        _repo.insertMeal(meal);
+    }
+
+    @Override
     public void onSuccess(List<?> list) {
         _view.showMealDetails((List<Meal>) list);
     }

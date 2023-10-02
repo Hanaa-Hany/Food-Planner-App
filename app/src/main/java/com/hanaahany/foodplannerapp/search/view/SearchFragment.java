@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
 import com.hanaahany.foodplannerapp.home.category.model.Category;
 import com.hanaahany.foodplannerapp.home.category.view.CategoryAdapter;
 import com.hanaahany.foodplannerapp.home.category.view.OnCategoryCallListener;
@@ -37,7 +38,7 @@ import com.hanaahany.foodplannerapp.search.presenter.SearchPresenterInterface;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment implements SearchViewInterface, OnCategoryCallListener, OnClickCountryInterface, OnIngredientCallListener {
+public class SearchFragment extends Fragment implements SearchViewInterface, OnCategoryCallListener, OnClickCountryInterface, OnIngredientCallListener,OnMealClick {
 
     Chip chipSamsung, chipApple, chipOppo;
     ChipGroup chipGroup;
@@ -64,7 +65,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
-        searchPresenterInterface = new SearchPresenter(SearchFragment.this, Repository.getInstance(MealsClient.getInstance()));
+        searchPresenterInterface = new SearchPresenter(SearchFragment.this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
         searchPresenterInterface.getCategory();
         chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
             @Override
@@ -176,7 +177,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
         Log.i(TAG, "search: "+list.size());
         if (list.size()>0) {
             recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
-            mealAdapter = new MealAdapter(list, getContext());
+            mealAdapter = new MealAdapter(list, getContext(),this);
             recyclerViewSearch.setAdapter(mealAdapter);
             mealAdapter.notifyDataSetChanged();
         }
@@ -209,5 +210,13 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
                 SearchFragmentDirections.actionSearchFragmentToIngredientMealsFragment(nameOfIngredient);
         Navigation.findNavController(getView()).navigate(action);
         Toast.makeText(getContext(), nameOfIngredient, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void sendNameOfMeal(String id) {
+        SearchFragmentDirections.ActionSearchFragmentToMealDetailsFragment action=
+                SearchFragmentDirections.actionSearchFragmentToMealDetailsFragment(id);
+        Navigation.findNavController(getView()).navigate(action);
+        Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
     }
 }

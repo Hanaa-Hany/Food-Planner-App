@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
 
 
+import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
 import com.hanaahany.foodplannerapp.home.category.view.CategoryFragmentViewInterface;
 import com.hanaahany.foodplannerapp.home.category.view.OnCategoryCallListener;
 import com.hanaahany.foodplannerapp.home.mealoftheday.presenter.SingleMealPresenter;
@@ -78,10 +79,10 @@ public class HomeFragment extends Fragment implements CategoryFragmentViewInterf
         Log.i(TAG, "onViewCreated: ");
 
         initViews();
-        categoryPresenterInterface = new CategoryPresenter(this, Repository.getInstance(MealsClient.getInstance()));
-        ingredientPresenterInterface=new IngredientPresenter(this, Repository.getInstance(MealsClient.getInstance()));
-        countryPresenterInterface=new CountryPresenter(this, Repository.getInstance(MealsClient.getInstance()));
-        singleMealPresenterInterface=new SingleMealPresenter(this,Repository.getInstance(MealsClient.getInstance()));
+        categoryPresenterInterface = new CategoryPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
+        ingredientPresenterInterface=new IngredientPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
+        countryPresenterInterface=new CountryPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
+        singleMealPresenterInterface=new SingleMealPresenter(this,Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
 
 
         categoryPresenterInterface.getCategory();
