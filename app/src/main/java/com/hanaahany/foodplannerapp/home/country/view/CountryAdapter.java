@@ -19,11 +19,13 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     List<Country>countryList;
     Context context;
     OnClickCountryInterface onClickCountryInterface;
+    private String [] flags;
 
     public CountryAdapter(List<Country> countryList, Context context, OnClickCountryInterface onClickCountryInterface) {
         this.countryList = countryList;
         this.context = context;
         this.onClickCountryInterface=onClickCountryInterface;
+        //flags = context.getResources().getStringArray(R.array.);
     }
 
     @NonNull
@@ -35,7 +37,6 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Country country=countryList.get(position);
         holder.textViewName.setText(country.getNameOfCountry());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

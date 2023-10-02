@@ -2,7 +2,6 @@ package com.hanaahany.foodplannerapp.mealdetails.presenter;
 
 import com.hanaahany.foodplannerapp.mealdetails.view.MealDetailsViewInterface;
 import com.hanaahany.foodplannerapp.model.Meal;
-import com.hanaahany.foodplannerapp.model.MealResponse;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;
 
@@ -19,7 +18,7 @@ public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInter
 
     @Override
     public void getMeal() {
-        _repo.makeNetworkCallCategory(this, 8);
+        _repo.makeNetworkCall(this, 8);
     }
 
     @Override

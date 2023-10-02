@@ -11,6 +11,14 @@
 
     >
 
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:layout_width="@dimen/_70sdp"-->
+<!--        android:layout_height="@dimen/_70sdp"-->
+<!--       android:layout_gravity="start"-->
+<!--        android:id="@+id/image_country"-->
+
+<!--        />-->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +29,7 @@
         android:textStyle="italic"
         android:padding="@dimen/_12sdp"
         android:id="@+id/tv_country_item"
+        android:layout_gravity="bottom"
         />
 
 </androidx.cardview.widget.CardView>

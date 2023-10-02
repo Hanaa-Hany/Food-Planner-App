@@ -31,7 +31,7 @@ public class CategoryPresenter implements NetworkCallBack, CategoryPresenterInte
 
     @Override
     public void getCategory() {
-        _repo.makeNetworkCallCategory(this,2);
+        _repo.makeNetworkCall(this,2);
     }
 
 

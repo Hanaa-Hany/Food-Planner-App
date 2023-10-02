@@ -50,6 +50,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     MealPresenterInterface mealPresenterInterface;
     RecyclerView recyclerViewIngredients;
     private static final String TAG = "MealDetailsFragmentRes";
+    MaterialButton materialButtonFav;
 
 
     @Override
@@ -63,12 +64,22 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+        onClick();
         if (getArguments()!=null){
             ID_OF_MEAL= MealDetailsFragmentArgs.fromBundle(getArguments()).getDetailsOfMeal();
             Log.i(TAG, "onViewCreated: "+ID_OF_MEAL);
         }
         mealPresenterInterface=new MealDetailsPresenter(this, Repository.getInstance(MealsClient.getInstance()));
         mealPresenterInterface.getMeal();
+    }
+
+    private void onClick() {
+        materialButtonFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              //  onFavClick(meal);
+            }
+        });
     }
 
     private void initViews() {
@@ -79,7 +90,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         textViewInstruction=getView().findViewById(R.id.tv_instruction_details_meal);
         youTubePlayerView=getView().findViewById(R.id.youtube_player_view);
         recyclerViewIngredients=getView().findViewById(R.id.recycler_ingredient_meal_details);
-
+        materialButtonFav=getView().findViewById(R.id.btn_add_fav_details_meal);
         recyclerViewIngredients.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
 
 
@@ -105,12 +116,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         Log.i(TAG, "showMealDetails: "+ingredientPojos.size());
         ingredientAdapter.notifyDataSetChanged();
         recyclerViewIngredients.setAdapter(ingredientAdapter);
-//        if (!list.get(0).getYoutube().equals("")) {
-//            videoArray = meals.get(0).getStrYoutube().split("=");
-//            videoString = videoArray[1];
-//        } else {
-//            videoString = "";
-//        }
+
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -169,5 +175,8 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             videoId = matcher.group();
         }
         return videoId;
+    }
+    private void onFavClick(Meal meal){
+
     }
 }

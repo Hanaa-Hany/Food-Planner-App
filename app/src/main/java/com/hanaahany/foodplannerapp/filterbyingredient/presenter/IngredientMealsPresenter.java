@@ -18,7 +18,7 @@ public class IngredientMealsPresenter implements IngredientMealsPresenterInterfa
 
     @Override
     public void getIngredient() {
-        _repo.makeNetworkCallCategory(this,6);
+        _repo.makeNetworkCall(this,6);
     }
 
     @Override
