@@ -10,26 +10,36 @@
     android:backgroundTint="@color/gray"
 
     >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-<!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:layout_width="@dimen/_70sdp"-->
-<!--        android:layout_height="@dimen/_70sdp"-->
-<!--       android:layout_gravity="start"-->
-<!--        android:id="@+id/image_country"-->
+        <ImageView
+            android:id="@+id/image_country"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
 
-<!--        />-->
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Egypt"
-        android:textSize="@dimen/_16ssp"
-        android:textColor="@color/black"
-        android:fontFamily="serif-monospace"
-        android:textStyle="italic"
-        android:padding="@dimen/_12sdp"
-        android:id="@+id/tv_country_item"
-        android:layout_gravity="bottom"
-        />
+        <TextView
+            android:id="@+id/tv_country_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
+            android:text="Egypt"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="italic"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_country" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.cardview.widget.CardView>

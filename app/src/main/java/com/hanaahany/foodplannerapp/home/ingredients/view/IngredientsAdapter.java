@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
 import com.hanaahany.foodplannerapp.model.Ingredients;
 
@@ -19,11 +21,13 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     List<Ingredients> ingredientsList;
     Context context;
     OnIngredientCallListener onIngredientCallListener;
+    private String [] flags;
 
     public IngredientsAdapter(List<Ingredients> ingredientsList, Context context, OnIngredientCallListener onIngredientCallListener) {
         this.ingredientsList = ingredientsList;
         this.context = context;
         this.onIngredientCallListener=onIngredientCallListener;
+        flags = context.getResources().getStringArray(R.array.flags_ingredient);
     }
 
     @NonNull
@@ -38,6 +42,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
         Ingredients ingredients=ingredientsList.get(position);
         holder.textViewIngredients.setText(ingredients.getName());
+        Glide.with(context).load(flags[position])
+                .into(holder.circleImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,9 +60,12 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewIngredients;
+        ImageView circleImageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewIngredients=itemView.findViewById(R.id.tv_country_item);
+            circleImageView=itemView.findViewById(R.id.image_country);
+
 
         }
     }

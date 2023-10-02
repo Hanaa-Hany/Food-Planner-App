@@ -21,11 +21,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     Context context;
     List<Category>arrayList;
     OnCategoryCallListener onCategoryCallListener;
+    private String [] flags;
 
     public CategoryAdapter(Context context, List<Category> arrayList,OnCategoryCallListener onCategoryCallListener) {
         this.context = context;
         this.arrayList = arrayList;
         this.onCategoryCallListener=onCategoryCallListener;
+
     }
 
     @NonNull

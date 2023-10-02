@@ -90,6 +90,11 @@ dependencies {
     //Youtube video
      implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
 
+//    //Search bar
+//    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
 
 
 }
