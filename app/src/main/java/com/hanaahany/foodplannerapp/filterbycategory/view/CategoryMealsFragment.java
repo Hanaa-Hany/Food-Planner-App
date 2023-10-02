@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMeals;
 import com.hanaahany.foodplannerapp.filterbyarea.presenter.CountryMealsPresenterInterface;
 import com.hanaahany.foodplannerapp.filterbyarea.view.CountryMealsAdapter;
@@ -55,7 +56,7 @@ public class CategoryMealsFragment extends Fragment implements CategoryMealsView
             NAME_OF_CATEGORY= CategoryMealsFragmentArgs.fromBundle(getArguments()).getNameOfCategory();
 
         }
-        categoryMealsPresenterInterface = new CategoryMealsPresenter( Repository.getInstance(MealsClient.getInstance()),this);
+        categoryMealsPresenterInterface = new CategoryMealsPresenter( Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())),this);
         categoryMealsPresenterInterface.getCategory();
 
     }

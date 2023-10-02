@@ -1,101 +1,154 @@
 package com.hanaahany.foodplannerapp.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
-
+@Entity(tableName = "Meal_Table")
 public class Meal {
-
+    @NonNull
+    @PrimaryKey
+    @ColumnInfo
     @SerializedName("idMeal")
     private String id;
+    @ColumnInfo
     @SerializedName("strMeal")
     private String nameOfMeal;
+    @ColumnInfo
     @SerializedName("strCategory")
     private String category;
+    @ColumnInfo
     @SerializedName("strArea")
     private String area;
+    @ColumnInfo
     @SerializedName("strInstructions")
     private String instructions;
+    @ColumnInfo
     @SerializedName("strMealThumb")
     private String image;
+    @ColumnInfo
     @SerializedName("strYoutube")
     private  String youtube;
+    @ColumnInfo
     @SerializedName("strIngredient1")
     private  String ingredient1;
+    @ColumnInfo
     @SerializedName("strIngredient2")
     private  String ingredient2;
+    @ColumnInfo
     @SerializedName("strIngredient3")
     private  String ingredient3;
+    @ColumnInfo
     @SerializedName("strIngredient4")
     private  String ingredient4;
+    @ColumnInfo
     @SerializedName("strIngredient5")
     private   String ingredient5;
+    @ColumnInfo
     @SerializedName("strIngredient6")
     private  String ingredient6;
+    @ColumnInfo
     @SerializedName("strIngredient7")
     private   String ingredient7;
+    @ColumnInfo
     @SerializedName("strIngredient8")
     private String ingredient8;
+    @ColumnInfo
     @SerializedName("strIngredient9")
     private String ingredient9;
+    @ColumnInfo
     @SerializedName("strIngredient10")
     private  String ingredient10;
+    @ColumnInfo
     @SerializedName("strIngredient11")
     private  String ingredient11;
+    @ColumnInfo
     @SerializedName("strIngredient12")
     private String ingredient12;
+    @ColumnInfo
     @SerializedName("strIngredient13")
     private   String ingredient13;
+    @ColumnInfo
     @SerializedName("strIngredient14")
     private String ingredient14;
+    @ColumnInfo
     @SerializedName("strIngredient15")
     private  String ingredient15;
+    @ColumnInfo
     @SerializedName("strIngredient16")
     private String ingredient16;
+    @ColumnInfo
     @SerializedName("strIngredient17")
     private String ingredient17;
+    @ColumnInfo
     @SerializedName("strIngredient18")
     private  String ingredient18;
+    @ColumnInfo
     @SerializedName("strIngredient19")
     private  String ingredient19;
+    @ColumnInfo
     @SerializedName("strIngredient20")
     private String ingredient20;
+    @ColumnInfo
     @SerializedName("strMeasure1")
     private String measure1;
+    @ColumnInfo
     @SerializedName("strMeasure2")
     private String measure2;
+    @ColumnInfo
     @SerializedName("strMeasure3")
     private String measure3;
+    @ColumnInfo
     @SerializedName("strMeasure4")
     private  String measure4;
+    @ColumnInfo
     @SerializedName("strMeasure5")
     private String measure5;
+    @ColumnInfo
     @SerializedName("strMeasure6")
     private String measure6;
+    @ColumnInfo
     @SerializedName("strMeasure7")
     private String measure7;
+    @ColumnInfo
     @SerializedName("strMeasure8")
     private String measure8;
+    @ColumnInfo
     @SerializedName("strMeasure9")
     private  String measure9;
+    @ColumnInfo
     @SerializedName("strMeasure10")
     private  String measure10;
+    @ColumnInfo
     @SerializedName("strMeasure11")
     private  String measure11;
+    @ColumnInfo
     @SerializedName("strMeasure12")
     private String measure12;
+    @ColumnInfo
     @SerializedName("strMeasure13")
     private String measure13;
+    @ColumnInfo
     @SerializedName("strMeasure14")
     private String measure14;
+    @ColumnInfo
     @SerializedName("strMeasure15")
     private String measure15;
+    @ColumnInfo
     @SerializedName("strMeasure16")
     private String measure16;
+    @ColumnInfo
     @SerializedName("strMeasure17")
     private String measure17;
+    @ColumnInfo
     @SerializedName("strMeasure18")
     private String measure18;
+    @ColumnInfo
     @SerializedName("strMeasure19")
     private String measure19;
+    @ColumnInfo
     @SerializedName("strMeasure20")
     private String measure20;
 

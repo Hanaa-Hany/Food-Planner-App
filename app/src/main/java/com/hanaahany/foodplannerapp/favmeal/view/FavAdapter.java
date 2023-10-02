@@ -1,6 +1,7 @@
-package com.hanaahany.foodplannerapp.search.view;
+package com.hanaahany.foodplannerapp.favmeal.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.home.category.model.Category;
+import com.hanaahany.foodplannerapp.home.category.view.CategoryAdapter;
 import com.hanaahany.foodplannerapp.model.Meal;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
+public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
-    List<Meal>arrayList;
+    List<Meal> mealList;
     Context context;
-    OnMealClick onMealClick;
+    OnFavClick onFavClick;
+    private static final String TAG = "FavAdapter";
 
-    public MealAdapter(List<Meal> arrayList, Context context,OnMealClick onMealClick) {
-        this.arrayList = arrayList;
+    public FavAdapter(List<Meal> mealList, Context context,OnFavClick onFavClick) {
+        this.mealList = mealList;
         this.context = context;
-        this.onMealClick=onMealClick;
+        this.onFavClick=onFavClick;
     }
 
     @NonNull
@@ -38,31 +41,33 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Meal meal=arrayList.get(position);
-        holder.textViewTitleOfName.setText(meal.getNameOfMeal());
+        Meal meal=mealList.get(position);
+        holder.textViewTitleOfCategory.setText(meal.getNameOfMeal());
         Glide.with(context).load(meal.getImage())
-                .into(holder.imageViewMeal);
+                .into(holder.imageViewCategory);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onMealClick.sendNameOfMeal(meal.getId());
+                Log.i(TAG, "onClick: "+meal.getId());
+                onFavClick.getMealDetails(meal.getId());
+              //  onCategoryCallListener.sendNameOfCategory(category.getCategoryName());
             }
         });
-
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return mealList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageViewMeal;
-        TextView textViewTitleOfName;
+        ImageView imageViewCategory;
+        TextView textViewTitleOfCategory;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewMeal=itemView.findViewById(R.id.image_category_item);
-            textViewTitleOfName=itemView.findViewById(R.id.title_of_category_item);
+            imageViewCategory=itemView.findViewById(R.id.image_category_item);
+            textViewTitleOfCategory=itemView.findViewById(R.id.title_of_category_item);
         }
     }
+
 }

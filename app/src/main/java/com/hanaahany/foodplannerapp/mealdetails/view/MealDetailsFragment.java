@@ -14,12 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.button.MaterialButton;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
 import com.hanaahany.foodplannerapp.filterbycategory.view.CategoryMealsFragmentArgs;
 import com.hanaahany.foodplannerapp.mealdetails.presenter.MealDetailsPresenter;
 import com.hanaahany.foodplannerapp.mealdetails.presenter.MealPresenterInterface;
@@ -51,6 +53,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     RecyclerView recyclerViewIngredients;
     private static final String TAG = "MealDetailsFragmentRes";
     MaterialButton materialButtonFav;
+    Meal meal;
 
 
     @Override
@@ -69,7 +72,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             ID_OF_MEAL= MealDetailsFragmentArgs.fromBundle(getArguments()).getDetailsOfMeal();
             Log.i(TAG, "onViewCreated: "+ID_OF_MEAL);
         }
-        mealPresenterInterface=new MealDetailsPresenter(this, Repository.getInstance(MealsClient.getInstance()));
+        mealPresenterInterface=new MealDetailsPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
         mealPresenterInterface.getMeal();
     }
 
@@ -77,7 +80,8 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         materialButtonFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  onFavClick(meal);
+                mealPresenterInterface.insertMealToFavourite(meal);
+                Toast.makeText(getContext(), "Added to fav", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -98,6 +102,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
 
     @Override
     public void showMealDetails(List<Meal> list) {
+         meal=list.get(0);
         String name=list.get(0).getNameOfMeal();
         String area=list.get(0).getArea();
         String instruction=list.get(0).getInstructions();
@@ -176,7 +181,5 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         }
         return videoId;
     }
-    private void onFavClick(Meal meal){
 
-    }
 }

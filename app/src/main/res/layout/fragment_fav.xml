@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".favmeal.view.FavFragment">
+    tools:context=".favmeal.view.FavFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+      android:layout_margin="@dimen/_20sdp"
+      android:text="@string/my_saved_recipes"
+       android:textColor="@color/black"
+       android:textSize="@dimen/_20ssp"
+       android:fontFamily="sans-serif-black"/>
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/recycler_fav"
+       tools:listitem="@layout/category_item"/>
 
-</FrameLayout>
+</LinearLayout>
