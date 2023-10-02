@@ -32,5 +32,7 @@ public interface MealServices {
     Call <CountryMealsResponse>filterByCategory(@Query("c")String category);
     @GET("lookup.php")
     Call <MealResponse>getDetailsOfMeal(@Query("i")String category);
+    @GET("search.php")
+    Call <MealResponse>getListMeal(@Query("s")String meal);
 
 }

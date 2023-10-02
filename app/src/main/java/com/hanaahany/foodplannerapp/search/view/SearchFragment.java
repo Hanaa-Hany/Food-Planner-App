@@ -9,10 +9,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -21,14 +23,12 @@ import com.hanaahany.foodplannerapp.home.category.model.Category;
 import com.hanaahany.foodplannerapp.home.category.view.CategoryAdapter;
 import com.hanaahany.foodplannerapp.home.category.view.OnCategoryCallListener;
 import com.hanaahany.foodplannerapp.home.country.model.Country;
-import com.hanaahany.foodplannerapp.home.country.presenter.CountryPresenterInterface;
 import com.hanaahany.foodplannerapp.home.country.view.CountryAdapter;
 import com.hanaahany.foodplannerapp.home.country.view.OnClickCountryInterface;
 import com.hanaahany.foodplannerapp.home.ingredients.view.IngredientsAdapter;
 import com.hanaahany.foodplannerapp.home.ingredients.view.OnIngredientCallListener;
-import com.hanaahany.foodplannerapp.home.view.HomeFragmentDirections;
-import com.hanaahany.foodplannerapp.mealdetails.view.IngredientAdapter;
 import com.hanaahany.foodplannerapp.model.Ingredients;
+import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.MealsClient;
 import com.hanaahany.foodplannerapp.search.presenter.SearchPresenter;
@@ -45,11 +45,13 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
     SearchPresenterInterface searchPresenterInterface;
     CountryAdapter countryAdapter;
     IngredientsAdapter ingredientAdapter;
+    MealAdapter mealAdapter;
+    public static String NAME_MEAL;
 
     CategoryAdapter categoryAdapter;
     private static final String TAG = "SearchFragment";
     public int flag = 0;
-
+    SearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,8 +101,30 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
                 }
             }
         });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                NAME_MEAL=query;
+
+                Log.i(TAG, "onQueryTextSubmit: ");
+
+                searchPresenterInterface.searchByName(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                Log.i(TAG, "onQueryTextChange: ");
+                NAME_MEAL=newText;
+                searchPresenterInterface.searchByName(newText);
+
+                return true;
+            }
+        });
 
     }
+
 
 
     private void initViews() {
@@ -109,7 +133,8 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
         chipApple = getView().findViewById(R.id.chip_Apple);
         chipOppo = getView().findViewById(R.id.chip_Oppo);
         chipGroup = getView().findViewById(R.id.chip_group);
-        recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
+         searchView = getView().findViewById(R.id.searchView);
+
     }
 
 
@@ -118,6 +143,8 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
     @Override
     public void searchCountry(List<Country> list) {
         Log.i(TAG, "searchCountry: " + list.size());
+        recyclerViewSearch.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
+
         countryAdapter = new CountryAdapter(list, getContext(), SearchFragment.this);
         recyclerViewSearch.setAdapter(countryAdapter);
         countryAdapter.notifyDataSetChanged();
@@ -126,6 +153,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
     }
     @Override
     public void searchCategory(List<Category> list) {
+        recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
 
         Log.i(TAG, "search: " + list.size());
         categoryAdapter = new CategoryAdapter(getContext(), list, SearchFragment.this);
@@ -138,8 +166,20 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
     @Override
     public void searchIngredient(List<Ingredients> list) {
         Log.i(TAG, "search: "+list.size());
+        recyclerViewSearch.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
         ingredientAdapter = new IngredientsAdapter(list,getContext(),SearchFragment.this);
         recyclerViewSearch.setAdapter(ingredientAdapter);
+    }
+
+    @Override
+    public void searchByName(List<Meal> list) {
+        Log.i(TAG, "search: "+list.size());
+        if (list.size()>0) {
+            recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
+            mealAdapter = new MealAdapter(list, getContext());
+            recyclerViewSearch.setAdapter(mealAdapter);
+            mealAdapter.notifyDataSetChanged();
+        }
     }
 
 

@@ -3,6 +3,7 @@ package com.hanaahany.foodplannerapp.search.presenter;
 import com.hanaahany.foodplannerapp.home.category.model.Category;
 import com.hanaahany.foodplannerapp.home.country.model.Country;
 import com.hanaahany.foodplannerapp.model.Ingredients;
+import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;
 import com.hanaahany.foodplannerapp.search.view.SearchViewInterface;
@@ -26,6 +27,9 @@ public class SearchPresenter implements SearchPresenterInterface, NetworkCallBac
             _view.searchCountry((List<Country>) list);
         } else if (list.get(0) instanceof Ingredients) {
             _view.searchIngredient((List<Ingredients>) list);
+        }
+        else if (list.get(0) instanceof Meal) {
+            _view.searchByName((List<Meal>) list);
         }
 //        _view.searchCategory((List<Category>)list);
 //        _view.searchCountry((List<Country>)list);
@@ -53,5 +57,10 @@ public class SearchPresenter implements SearchPresenterInterface, NetworkCallBac
     public void getIngredient() {
 
         _repo.makeNetworkCall(this,4);
+    }
+
+    @Override
+    public void searchByName(String meal) {
+        _repo.makeNetworkCall(this,9);
     }
 }

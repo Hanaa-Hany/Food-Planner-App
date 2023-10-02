@@ -4,15 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
 import com.hanaahany.foodplannerapp.home.country.model.Country;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder> {
 
@@ -25,7 +29,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         this.countryList = countryList;
         this.context = context;
         this.onClickCountryInterface=onClickCountryInterface;
-        //flags = context.getResources().getStringArray(R.array.);
+        flags = context.getResources().getStringArray(R.array.flags);
     }
 
     @NonNull
@@ -39,6 +43,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Country country=countryList.get(position);
         holder.textViewName.setText(country.getNameOfCountry());
+        Glide.with(context).load(flags[position])
+                .into(holder.circleImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,9 +62,11 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     class  ViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName;
+        ImageView circleImageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName=itemView.findViewById(R.id.tv_country_item);
+            circleImageView=itemView.findViewById(R.id.image_country);
         }
     }
 }
