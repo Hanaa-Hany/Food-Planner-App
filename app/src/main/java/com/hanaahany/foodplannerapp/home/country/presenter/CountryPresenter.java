@@ -28,6 +28,6 @@ public class CountryPresenter  implements NetworkCallBack, CountryPresenterInter
 
     @Override
     public void getCountry() {
-        _repo.makeNetworkCallCategory(this,3);
+        _repo.makeNetworkCall(this,3);
     }
 }

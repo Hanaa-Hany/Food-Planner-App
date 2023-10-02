@@ -18,7 +18,7 @@ public class CategoryMealsPresenter implements NetworkCallBack,CategoryMealsPres
 
     @Override
     public void getCategory() {
-        _repo.makeNetworkCallCategory(this,7);
+        _repo.makeNetworkCall(this,7);
     }
 
     @Override

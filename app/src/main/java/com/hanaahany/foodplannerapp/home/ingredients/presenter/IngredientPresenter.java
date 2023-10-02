@@ -30,6 +30,6 @@ public class IngredientPresenter implements NetworkCallBack, IngredientPresenter
     @Override
     public void getIngredients() {
 
-        _repo.makeNetworkCallCategory(this,4);
+        _repo.makeNetworkCall(this,4);
     }
 }

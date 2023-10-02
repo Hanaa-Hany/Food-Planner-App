@@ -32,6 +32,6 @@ public class CountryMealsPresenter implements NetworkCallBack, CountryMealsPrese
 
     @Override
     public void getCountryMeals() {
-        _repo.makeNetworkCallCategory(this,5);
+        _repo.makeNetworkCall(this,5);
     }
 }

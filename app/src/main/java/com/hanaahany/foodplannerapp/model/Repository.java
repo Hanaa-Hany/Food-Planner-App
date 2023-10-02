@@ -21,7 +21,7 @@ public class Repository implements RepositoryInterface{
 
 
     @Override
-    public void makeNetworkCallCategory(NetworkCallBack networkCallBack,int id) {
+    public void makeNetworkCall(NetworkCallBack networkCallBack, int id) {
         remoteSource.makeNetworkCallCategories(networkCallBack,id);
     }
 

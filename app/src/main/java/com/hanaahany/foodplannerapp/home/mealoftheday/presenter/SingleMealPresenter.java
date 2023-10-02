@@ -19,7 +19,7 @@ public class SingleMealPresenter implements NetworkCallBack, SingleMealPresenter
 
     @Override
     public void getSingleMeal() {
-        _repo.makeNetworkCallCategory(this,1);
+        _repo.makeNetworkCall(this,1);
     }
 
     @Override
