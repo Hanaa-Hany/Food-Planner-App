@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignFragment"
-    android:background="@drawable/sign"
+    android:background="@drawable/signn"
 
     >
 
@@ -15,13 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="64dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="Foodko"
         android:textColor="@color/white"
         android:textSize="@dimen/_40ssp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,18 +43,18 @@
         android:id="@+id/materialButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/materialButton2"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:backgroundTint="@color/pink"
-        app:icon="@drawable/ic_google"
+        android:backgroundTint="@color/orange"
         android:text="Sign As Anonymous"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"
@@ -84,6 +84,7 @@
         />
 
     <com.google.android.material.button.MaterialButton
+        app:backgroundTint="@color/orange"
         android:id="@+id/materialButton2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -95,7 +96,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:icon="@drawable/ic_google"
-        android:backgroundTint="@color/pink"
         android:text="Sign With Google"
         android:textAllCaps="false"/>
 
