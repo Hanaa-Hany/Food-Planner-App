@@ -30,7 +30,7 @@ public class ConcreteLocalSource implements IConcreteLocalSource{
         return localSource;
     }
 
-
+    //Fav
     @Override
     public LiveData<List<Meal>> getStoredMeals() {
         return storedMeals;
@@ -45,4 +45,26 @@ public class ConcreteLocalSource implements IConcreteLocalSource{
             }
         }).start();
     }
+
+    @Override
+    public void deleteMeal(Meal meal) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mealDAO.deleteMeal(meal);
+            }
+        }).start();
+    }
+
+    @Override
+    public LiveData<List<Meal>> getMealsOfDay(String day) {
+        return mealDAO.getMealsOfDay(day);
+    }
+
+    @Override
+    public void updateDayOfMeal(String id, String day) {
+        mealDAO.updateColumnDay(id,day);
+    }
+
+
 }

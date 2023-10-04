@@ -151,8 +151,11 @@ public class Meal {
     @ColumnInfo
     @SerializedName("strMeasure20")
     private String measure20;
+    @ColumnInfo
+    private String day;
 
-    public Meal(String id, String nameOfMeal, String category, String area, String instructions, String image, String youtube, String ingredient1, String ingredient2, String ingredient3, String ingredient4, String ingredient5, String ingredient6, String ingredient7, String ingredient8, String ingredient9, String ingredient10, String ingredient11, String ingredient12, String ingredient13, String ingredient14, String ingredient15, String ingredient16, String ingredient17, String ingredient18, String ingredient19, String ingredient20, String measure1, String measure2, String measure3, String measure4, String measure5, String measure6, String measure7, String measure8, String measure9, String measure10, String measure11, String measure12, String measure13, String measure14, String measure15, String measure16, String measure17, String measure18, String measure19, String measure20) {
+
+    public Meal(@NonNull String id, String nameOfMeal, String category, String area, String instructions, String image, String youtube, String ingredient1, String ingredient2, String ingredient3, String ingredient4, String ingredient5, String ingredient6, String ingredient7, String ingredient8, String ingredient9, String ingredient10, String ingredient11, String ingredient12, String ingredient13, String ingredient14, String ingredient15, String ingredient16, String ingredient17, String ingredient18, String ingredient19, String ingredient20, String measure1, String measure2, String measure3, String measure4, String measure5, String measure6, String measure7, String measure8, String measure9, String measure10, String measure11, String measure12, String measure13, String measure14, String measure15, String measure16, String measure17, String measure18, String measure19, String measure20, String day) {
         this.id = id;
         this.nameOfMeal = nameOfMeal;
         this.category = category;
@@ -200,6 +203,15 @@ public class Meal {
         this.measure18 = measure18;
         this.measure19 = measure19;
         this.measure20 = measure20;
+        this.day = day;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public String getId() {

@@ -23,7 +23,23 @@ public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInter
 
     @Override
     public void insertMealToFavourite(Meal meal) {
-        _repo.insertMeal(meal);
+        _repo.insertMealFav(meal);
+    }
+
+    @Override
+    public void deleteMeal(Meal meal) {
+
+    }
+
+    @Override
+    public void updateDayOfMeal(String id, String day) {
+
+        _repo.updateDayOfMeal(id,day);
+    }
+
+    @Override
+    public void getMealById(String id) {
+
     }
 
     @Override

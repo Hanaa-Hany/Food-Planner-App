@@ -57,7 +57,7 @@ public class SplachScreenFragment extends Fragment {
                     public void onComplete()
                     {
                         navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_splachScreenFragment_to_loginFragment);
+                        navController.navigate(R.id.action_splachScreenFragment_to_signFragment);
                         Log.i(TAG, "onComplete: ");
                     }
 

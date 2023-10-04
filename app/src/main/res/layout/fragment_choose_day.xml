@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".chooseday.view.ChooseDayFragment"
+    android:orientation="vertical">
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/what_day_should_we_add_this_reciepe_to"
+       android:textStyle="bold"
+       android:textColor="#1F495B"
+       android:textSize="@dimen/_25ssp"
+       android:gravity="center"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/_6sdp"
+        android:elevation="@dimen/_6sdp"
+        android:layout_margin="@dimen/_10sdp"
+        >
+
+        <LinearLayout
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_saturday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:text="S"
+                android:textColor="@color/black"
+                app:cornerRadius="@dimen/_70sdp"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sunday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:text="S"
+                android:textColor="@color/black"
+                app:cornerRadius="@dimen/_70sdp"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp"
+
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_monday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:text="M"
+                android:textColor="@color/black"
+                app:cornerRadius="@dimen/_70sdp"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp"
+
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_tuesday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:text="T"
+                android:textColor="@color/black"
+                app:cornerRadius="@dimen/_70sdp"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_wednesday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:text="W"
+                android:textColor="@color/black"
+                app:cornerRadius="@dimen/_70sdp"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_thursday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:text="T"
+                android:textColor="@color/black"
+                app:cornerRadius="@dimen/_70sdp"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_friday"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:text="F"
+                android:textColor="@color/black"
+                app:cornerRadius="@dimen/_70sdp"
+                android:backgroundTint="@color/gray"
+                android:layout_marginStart="@dimen/_5sdp"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/continye"
+        android:text="Continue"/>
+
+
+
+</LinearLayout>

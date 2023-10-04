@@ -1,4 +1,4 @@
-package com.hanaahany.foodplannerapp.login.view;
+package com.hanaahany.foodplannerapp.auth.login.view;
 
 import android.content.Intent;
 import android.os.Bundle;

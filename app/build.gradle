@@ -86,6 +86,8 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics'
     implementation("com.google.firebase:firebase-auth")
+    // Also add the dependency for the Google Play services library and specify its version
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     //Youtube video
      implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
@@ -94,6 +96,9 @@ dependencies {
 //    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
 
 
 

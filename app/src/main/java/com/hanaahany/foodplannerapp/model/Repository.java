@@ -38,10 +38,24 @@ public class Repository implements RepositoryInterface{
     }
 
     @Override
-    public void insertMeal(Meal meal) {
+    public void insertMealFav(Meal meal) {
         localSource.insertMeal(meal);
     }
 
+    @Override
+    public void deleteMealFav(Meal meal) {
+
+    }
+
+    @Override
+    public LiveData<List<Meal>> getMealsOfDay(String day) {
+        return localSource.getMealsOfDay(day);
+    }
+
+    @Override
+    public void updateDayOfMeal(String id, String day) {
+        localSource.updateDayOfMeal(id,day);
+    }
 
 
 }

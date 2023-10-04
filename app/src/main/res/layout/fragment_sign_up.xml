@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".signup.view.SignUpFragment"
+    tools:context=".auth.signup.view.SignUpFragment"
     android:background="#F9F8F5">
     <ImageView
         android:layout_width="match_parent"
@@ -91,6 +91,7 @@
                 app:layout_constraintStart_toStartOf="@id/layout_email"
                 app:layout_constraintTop_toBottomOf="@id/layout_email"
                 app:startIconDrawable="@drawable/ic_lock"
+                app:passwordToggleEnabled="true"
 
                 >
 
@@ -118,6 +119,7 @@
                 app:layout_constraintStart_toStartOf="@id/layout_email"
                 app:layout_constraintTop_toBottomOf="@id/layout_password_sign_up"
                 app:startIconDrawable="@drawable/ic_lock"
+                app:passwordToggleEnabled="true"
 
                 >
 

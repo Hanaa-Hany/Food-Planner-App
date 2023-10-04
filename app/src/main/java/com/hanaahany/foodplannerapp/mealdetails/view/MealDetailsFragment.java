@@ -1,13 +1,6 @@
 package com.hanaahany.foodplannerapp.mealdetails.view;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +8,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.button.MaterialButton;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.chooseday.view.ChooseDayFragment;
 import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
-import com.hanaahany.foodplannerapp.filterbycategory.view.CategoryMealsFragmentArgs;
 import com.hanaahany.foodplannerapp.mealdetails.presenter.MealDetailsPresenter;
 import com.hanaahany.foodplannerapp.mealdetails.presenter.MealPresenterInterface;
 import com.hanaahany.foodplannerapp.model.IngredientPojo;
 import com.hanaahany.foodplannerapp.model.Meal;
-import com.hanaahany.foodplannerapp.model.MealResponse;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.MealsClient;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -52,8 +50,9 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     MealPresenterInterface mealPresenterInterface;
     RecyclerView recyclerViewIngredients;
     private static final String TAG = "MealDetailsFragmentRes";
-    MaterialButton materialButtonFav;
+    MaterialButton materialButtonFav,materialButtonPlan;
     Meal meal;
+    String id;
 
 
     @Override
@@ -72,8 +71,16 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             ID_OF_MEAL= MealDetailsFragmentArgs.fromBundle(getArguments()).getDetailsOfMeal();
             Log.i(TAG, "onViewCreated: "+ID_OF_MEAL);
         }
+            if (ChooseDayFragment.DAY != null) {
+                meal.setDay(ChooseDayFragment.DAY);
+                mealPresenterInterface.insertMealToFavourite(meal);
+                Toast.makeText(getContext(), "Saved to Plan", Toast.LENGTH_SHORT).show();
+                ChooseDayFragment.DAY = null;
+
+        }
         mealPresenterInterface=new MealDetailsPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
         mealPresenterInterface.getMeal();
+
     }
 
     private void onClick() {
@@ -81,13 +88,24 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             @Override
             public void onClick(View view) {
                 mealPresenterInterface.insertMealToFavourite(meal);
-                Toast.makeText(getContext(), "Added to fav", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Saved to fav", Toast.LENGTH_SHORT).show();
+            }
+        });
+        materialButtonPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick: "+ID_OF_MEAL);
+                Navigation.findNavController(getView()).navigate(R.id.action_mealDetailsFragment_to_chooseDayFragment);
+
+
+
             }
         });
     }
 
     private void initViews() {
         bottomNavigation = getActivity().findViewById(R.id.bottomNavigation);
+        materialButtonPlan=getView().findViewById(R.id.btn_add_plan_details_meal);
         imageView=getView().findViewById(R.id.image_details_meal);
         textViewNameOfMeal=getView().findViewById(R.id.tv_name_of_detail_meal);
         textViewNameOfArea=getView().findViewById(R.id.tv_country_details_meal);
@@ -103,6 +121,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     @Override
     public void showMealDetails(List<Meal> list) {
          meal=list.get(0);
+         id= meal.getId();
         String name=list.get(0).getNameOfMeal();
         String area=list.get(0).getArea();
         String instruction=list.get(0).getInstructions();

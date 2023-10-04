@@ -12,7 +12,20 @@
           "package_name": "com.hanaahany.foodplannerapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "605864558402-7qdvfr6fq4a61i1do7lj7utu0idemthh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hanaahany.foodplannerapp",
+            "certificate_hash": "4f93c5c66ac14b933dd16d5c73df35b5806be21a"
+          }
+        },
+        {
+          "client_id": "605864558402-49dhln3tf9nstnmauqhqcf39o3ec888v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCm5oFsK0C87OiPqFaP-4mUd9nchjdjGk4"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605864558402-49dhln3tf9nstnmauqhqcf39o3ec888v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -1,4 +1,4 @@
-package com.hanaahany.foodplannerapp.forgetpassword.view;
+package com.hanaahany.foodplannerapp.mealdetails.forgetpassword.view;
 
 import android.os.Bundle;
 

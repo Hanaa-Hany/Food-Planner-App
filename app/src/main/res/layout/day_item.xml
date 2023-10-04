@@ -15,11 +15,11 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_130sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/background"
-            android:id="@+id/image_category_item"
+            android:id="@+id/image_day_item"
             android:scaleType="fitXY"
             />
 
@@ -27,17 +27,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Apetizer"
-            android:textColor="@color/black"
+            android:textColor="#47326B"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_day_item"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@color/white"
             android:padding="@dimen/_5sdp"
-            android:textAlignment="center"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:id="@+id/title_of_day_item"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apetizer"
+            app:layout_constraintTop_toBottomOf="@id/title_of_day_item"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:alpha=".5"
-            android:id="@+id/title_of_category_item"
-           />
+            android:id="@+id/category_of_day_item"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:id="@+id/cancel_icon"/>
 
 
 

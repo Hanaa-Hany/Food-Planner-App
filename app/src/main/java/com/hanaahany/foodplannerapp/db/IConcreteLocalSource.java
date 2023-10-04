@@ -13,4 +13,12 @@ public interface IConcreteLocalSource {
 
     //Insert meal to database
     void insertMeal(Meal meal);
+
+    //Delete meal to database
+    void deleteMeal(Meal meal);
+
+
+
+    LiveData<List<Meal>> getMealsOfDay(String day);
+    void updateDayOfMeal(String id, String day);
 }
