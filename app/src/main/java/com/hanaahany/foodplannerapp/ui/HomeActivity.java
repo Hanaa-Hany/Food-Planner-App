@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
 
                         break;
                     case 4:
-                       // navController.navigate(R.id.);
+                        navController.navigate(R.id.planFragment);
 
 
                         break;

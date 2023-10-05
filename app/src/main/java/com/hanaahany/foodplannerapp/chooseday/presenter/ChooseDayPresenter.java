@@ -1,5 +1,7 @@
-package com.hanaahany.foodplannerapp.mealdetails.presenter;
+package com.hanaahany.foodplannerapp.chooseday.presenter;
 
+import com.hanaahany.foodplannerapp.chooseday.view.ChooseDayViewInterface;
+import com.hanaahany.foodplannerapp.mealdetails.presenter.MealPresenterInterface;
 import com.hanaahany.foodplannerapp.mealdetails.view.MealDetailsViewInterface;
 import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.Repository;
@@ -7,18 +9,23 @@ import com.hanaahany.foodplannerapp.network.NetworkCallBack;
 
 import java.util.List;
 
-public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInterface {
-    MealDetailsViewInterface _view;
+public class ChooseDayPresenter implements NetworkCallBack, MealPresenterInterface {
+    ChooseDayViewInterface _view;
     Repository _repo;
 
-    public MealDetailsPresenter(MealDetailsViewInterface _view, Repository _repo) {
+    public ChooseDayPresenter(ChooseDayViewInterface _view, Repository _repo) {
         this._view = _view;
         this._repo = _repo;
     }
 
     @Override
+    public void getMeal(String day) {
+        _repo.getMealsOfDay(day);
+    }
+
+    @Override
     public void getMeal() {
-        _repo.makeNetworkCall(this, 8);
+
     }
 
     @Override
@@ -28,18 +35,12 @@ public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInter
 
     @Override
     public void deleteMeal(Meal meal) {
-
-    }
-
-    @Override
-    public void getMeal(String day) {
-
+        _repo.deleteMealFav(meal);
     }
 
 //    @Override
 //    public void updateDayOfMeal(String id, String day) {
 //
-//        _repo.updateDayOfMeal(id,day);
 //    }
 //
 //    @Override
@@ -49,7 +50,7 @@ public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInter
 
     @Override
     public void onSuccess(List<?> list) {
-        _view.showMealDetails((List<Meal>) list);
+
     }
 
     @Override

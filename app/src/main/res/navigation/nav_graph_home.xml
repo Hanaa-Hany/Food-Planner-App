@@ -122,5 +122,13 @@
         <action
             android:id="@+id/action_chooseDayFragment_to_mealDetailsFragment"
             app:destination="@id/mealDetailsFragment" />
+        <action
+            android:id="@+id/action_chooseDayFragment_to_planFragment"
+            app:destination="@id/planFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/planFragment"
+        android:name="com.hanaahany.foodplannerapp.plan.view.PlanFragment"
+        android:label="fragment_plan"
+        tools:layout="@layout/fragment_plan" />
 </navigation>

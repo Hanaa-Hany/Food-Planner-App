@@ -9,8 +9,9 @@ public interface MealPresenterInterface {
     void deleteMeal(Meal meal);
 
     //Plan
-    void updateDayOfMeal(String id, String day);
-    void getMealById(String id);
+    void getMeal(String day);
+//    void updateDayOfMeal(String id, String day);
+//    void getMealById(String id);
 //    void getMealPlan();
 //    void insertMealToPlan(Meal meal,String day);
 //    void deleteMealPlan(Meal meal,String id);

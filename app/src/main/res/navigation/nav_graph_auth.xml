@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordFragment"
-        android:name="com.hanaahany.foodplannerapp.mealdetails.forgetpassword.view.ForgetPasswordFragment"
+        android:name="com.hanaahany.foodplannerapp.auth.forgetpass.view.ForgetPasswordFragment"
         android:label="fragment_forget_password"
         tools:layout="@layout/fragment_forget_password" />
     <fragment

@@ -1,6 +1,8 @@
 package com.hanaahany.foodplannerapp.mealdetails.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +44,7 @@ import java.util.regex.Pattern;
 public class MealDetailsFragment extends Fragment implements MealDetailsViewInterface{
 
     private MeowBottomNavigation bottomNavigation;
-    ImageView imageView;
+    ImageView imageView,imageViewCalender;
     TextView textViewNameOfMeal,textViewNameOfArea,textViewInstruction;
     YouTubePlayerView youTubePlayerView;
     public static String ID_OF_MEAL;
@@ -72,10 +74,10 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             Log.i(TAG, "onViewCreated: "+ID_OF_MEAL);
         }
             if (ChooseDayFragment.DAY != null) {
-                meal.setDay(ChooseDayFragment.DAY);
-                mealPresenterInterface.insertMealToFavourite(meal);
-                Toast.makeText(getContext(), "Saved to Plan", Toast.LENGTH_SHORT).show();
-                ChooseDayFragment.DAY = null;
+//                meal.setDay(ChooseDayFragment.DAY);
+//                mealPresenterInterface.insertMealToFavourite(meal);
+//                Toast.makeText(getContext(), "Saved to Plan", Toast.LENGTH_SHORT).show();
+//                ChooseDayFragment.DAY = null;
 
         }
         mealPresenterInterface=new MealDetailsPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
@@ -95,10 +97,17 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick: "+ID_OF_MEAL);
-                Navigation.findNavController(getView()).navigate(R.id.action_mealDetailsFragment_to_chooseDayFragment);
+                mealPresenterInterface.insertMealToFavourite(meal);
+               // Navigation.findNavController(getView()).navigate(R.id.action_mealDetailsFragment_to_chooseDayFragment);
 
 
 
+            }
+        });
+        imageViewCalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToMobileCalender();
             }
         });
     }
@@ -114,7 +123,7 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         recyclerViewIngredients=getView().findViewById(R.id.recycler_ingredient_meal_details);
         materialButtonFav=getView().findViewById(R.id.btn_add_fav_details_meal);
         recyclerViewIngredients.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
-
+        imageViewCalender=getView().findViewById(R.id.image_calender);
 
     }
 
@@ -199,6 +208,17 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             videoId = matcher.group();
         }
         return videoId;
+    }
+
+    private void addToMobileCalender() {
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.Events.TITLE, meal.getNameOfMeal())
+                .putExtra(CalendarContract.Events.DESCRIPTION, "Enjoy a delicious " + meal.getNameOfMeal() + " for dinner!")//for description the meal in calender
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, "Home")//my location
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, System.currentTimeMillis())//start time now
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, System.currentTimeMillis() + (60 * 60 * 1000)); // End time is 1 hour after start time
+        startActivity(intent);
     }
 
 }

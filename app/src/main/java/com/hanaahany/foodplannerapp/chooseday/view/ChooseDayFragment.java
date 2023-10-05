@@ -13,13 +13,24 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.chooseday.presenter.ChooseDayPresenter;
+import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
+import com.hanaahany.foodplannerapp.mealdetails.presenter.MealDetailsPresenter;
+import com.hanaahany.foodplannerapp.mealdetails.presenter.MealPresenterInterface;
 import com.hanaahany.foodplannerapp.mealdetails.view.MealDetailsFragment;
+import com.hanaahany.foodplannerapp.model.Meal;
+import com.hanaahany.foodplannerapp.model.Repository;
+import com.hanaahany.foodplannerapp.network.MealsClient;
+
+import java.util.List;
 
 
-public class ChooseDayFragment extends Fragment {
+public class ChooseDayFragment extends Fragment implements ChooseDayViewInterface{
 
+    MealPresenterInterface mealPresenterInterface;
     MaterialButton materialButtonSat, materialButtonSun, materialButtonMon,
             materialButtonTue, materialButtonWed, materialButtonThu, materialButtonFriday,materialButton;
+    Meal meal;
     public static String DAY=null;
     private static final String TAG = "ChooseDayFragment";
 
@@ -33,32 +44,62 @@ public class ChooseDayFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mealPresenterInterface=new ChooseDayPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
         initViews();
         onClicks();
     }
 
+
     private void onClicks() {
-        if (materialButtonFriday.performClick()) {
-            DAY = "Friday";
-            Log.i(TAG, "onClicks: "+DAY);
-        } else if (materialButtonMon.isClickable()) {
-            DAY = "Monday";
-        } else if (materialButtonSat.isClickable()) {
-            DAY = "Saturday";
-        } else if (materialButtonSun.isClickable()) {
-            DAY = "Sunday";
-        } else if (materialButtonThu.isClickable()) {
-            DAY = "Thursday";
-        } else if (materialButtonWed.isClickable()) {
-            DAY = "Wednesday";
-        } else if (materialButtonTue.isClickable()) {
-            DAY = "Tuesday";
-        }
+        materialButtonMon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAY = "Monday";
+            }
+        });
+        materialButtonTue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAY = "Tuesday";
+            }
+        });
+        materialButtonFriday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAY = "Friday";
+            }
+        });
+        materialButtonWed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAY = "Wednesday";
+            }
+        });
+        materialButtonSat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAY = "Saturday";
+            }
+        });
+        materialButtonSun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAY = "Sunday";
+            }
+        });
+        materialButtonThu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAY = "Thursday";
+            }
+        });
+
         materialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick: "+ MealDetailsFragment.ID_OF_MEAL);
-              //  Navigation.findNavController(getView()).navigate(R.id.action_chooseDayFragment_to_mealDetailsFragment);
+                mealPresenterInterface.insertMealToFavourite(meal);
+                Navigation.findNavController(getView()).navigate(R.id.action_chooseDayFragment_to_planFragment);
             }
         });
     }
@@ -72,5 +113,11 @@ public class ChooseDayFragment extends Fragment {
         materialButtonWed = getView().findViewById(R.id.btn_wednesday);
         materialButtonThu = getView().findViewById(R.id.btn_thursday);
         materialButton=getView().findViewById(R.id.continye);
+    }
+
+    @Override
+    public void showMealDetails(List<Meal> list) {
+        meal=list.get(0);
+        Log.i(TAG, "showMealDetails: "+list.size());
     }
 }
