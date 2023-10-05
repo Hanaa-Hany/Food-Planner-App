@@ -1,5 +1,6 @@
-package com.hanaahany.foodplannerapp;
+package com.hanaahany.foodplannerapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.ui.HomeActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,6 +30,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SplachScreenFragment extends Fragment {
 
+    FirebaseAuth mAuth;
 
     private static final String TAG = "SplachScreenFragment";
 
@@ -40,6 +46,10 @@ public class SplachScreenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mAuth=FirebaseAuth.getInstance();
+        if (getArguments()!=null){
+
+        }
         //RXjava
 
 
@@ -57,7 +67,13 @@ public class SplachScreenFragment extends Fragment {
                     public void onComplete()
                     {
                         navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-                        navController.navigate(R.id.action_splachScreenFragment_to_signFragment);
+
+                        if (mAuth.getCurrentUser()!=null){
+                            startActivity(new Intent(getActivity(), HomeActivity.class));
+
+                        }else {
+                            navController.navigate(R.id.action_splachScreenFragment_to_signFragment);
+                        }
                         Log.i(TAG, "onComplete: ");
                     }
 

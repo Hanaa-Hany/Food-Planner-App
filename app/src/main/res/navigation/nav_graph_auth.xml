@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splachScreenFragment"
-        android:name="com.hanaahany.foodplannerapp.SplachScreenFragment"
+        android:name="com.hanaahany.foodplannerapp.ui.SplachScreenFragment"
         android:label="fragment_splach_screen"
         tools:layout="@layout/fragment_splach_screen" >
         <action
@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_forget_password" />
     <fragment
         android:id="@+id/signFragment"
-        android:name="com.hanaahany.foodplannerapp.SignFragment"
+        android:name="com.hanaahany.foodplannerapp.auth.SignFragment"
         android:label="fragment_sign"
         tools:layout="@layout/fragment_sign" >
         <action

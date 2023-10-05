@@ -23,4 +23,9 @@ public class FavPresenter implements FavPresenterInterface {
     public void getFavMeal() {
         _view.showData(_repo.getStoredMeals());
     }
+
+    @Override
+    public void deleteMeal(Meal meal) {
+        _repo.deleteMealFav(meal);
+    }
 }

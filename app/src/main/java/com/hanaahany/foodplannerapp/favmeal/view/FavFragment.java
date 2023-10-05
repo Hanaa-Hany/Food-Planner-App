@@ -75,4 +75,9 @@ public class FavFragment extends Fragment implements FavViewInterface,OnFavClick
                 FavFragmentDirections.actionFavFragmentToMealDetailsFragment(id);
         Navigation.findNavController(getView()).navigate(action);
     }
+
+    @Override
+    public void deleteMeal(Meal meal) {
+favPresenterInterface.deleteMeal(meal);
+    }
 }

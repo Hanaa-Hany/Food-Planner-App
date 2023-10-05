@@ -93,6 +93,7 @@ public class LoginFragment extends Fragment {
 
     private void updateUI(FirebaseUser user) {
         Intent intent=new Intent(getActivity(),HomeActivity.class);
+
         startActivity(intent);
     }
 

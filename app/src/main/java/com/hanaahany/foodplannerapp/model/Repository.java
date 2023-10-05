@@ -8,28 +8,27 @@ import com.hanaahany.foodplannerapp.network.RemoteSource;
 
 import java.util.List;
 
-public class Repository implements RepositoryInterface{
+public class Repository implements RepositoryInterface {
     RemoteSource remoteSource;
     ConcreteLocalSource localSource;
-    private  static Repository repository=null;
+    private static Repository repository = null;
 
     public Repository(RemoteSource remoteSource, ConcreteLocalSource localSource) {
         this.remoteSource = remoteSource;
-        this.localSource=localSource;
+        this.localSource = localSource;
     }
 
-    public static Repository getInstance(RemoteSource remoteSource,ConcreteLocalSource localSource){
-        if (repository==null){
-            repository=new Repository(remoteSource,localSource);
+    public static Repository getInstance(RemoteSource remoteSource, ConcreteLocalSource localSource) {
+        if (repository == null) {
+            repository = new Repository(remoteSource, localSource);
         }
         return repository;
     }
 
 
-
     @Override
     public void makeNetworkCall(NetworkCallBack networkCallBack, int id) {
-        remoteSource.makeNetworkCallCategories(networkCallBack,id);
+        remoteSource.makeNetworkCallCategories(networkCallBack, id);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class Repository implements RepositoryInterface{
 
     @Override
     public void deleteMealFav(Meal meal) {
-
+        localSource.deleteMeal(meal);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class Repository implements RepositoryInterface{
 
     @Override
     public void updateDayOfMeal(String id, String day) {
-        localSource.updateDayOfMeal(id,day);
+        localSource.updateDayOfMeal(id, day);
     }
 
 

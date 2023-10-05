@@ -35,7 +35,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.category_item,parent,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.fav_item,parent,false);
         return new ViewHolder(view);
     }
 
@@ -53,6 +53,12 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
               //  onCategoryCallListener.sendNameOfCategory(category.getCategoryName());
             }
         });
+        holder.imageViewDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onFavClick.deleteMeal(meal);
+            }
+        });
     }
 
     @Override
@@ -61,12 +67,13 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageViewCategory;
+        ImageView imageViewCategory,imageViewDelete;
         TextView textViewTitleOfCategory;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageViewCategory=itemView.findViewById(R.id.image_category_item);
-            textViewTitleOfCategory=itemView.findViewById(R.id.title_of_category_item);
+            imageViewCategory=itemView.findViewById(R.id.image_fav_item);
+            textViewTitleOfCategory=itemView.findViewById(R.id.title_of_fav_item);
+            imageViewDelete=itemView.findViewById(R.id.delete);
         }
     }
 
