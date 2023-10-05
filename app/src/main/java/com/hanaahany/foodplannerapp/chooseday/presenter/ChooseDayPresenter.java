@@ -18,10 +18,10 @@ public class ChooseDayPresenter implements NetworkCallBack, MealPresenterInterfa
         this._repo = _repo;
     }
 
-    @Override
-    public void getMeal(String day) {
-        _repo.getMealsOfDay(day);
-    }
+//    @Override
+//    public void getMeal(String day) {
+//        _repo.getMealsOfDay(day);
+//    }
 
     @Override
     public void getMeal() {

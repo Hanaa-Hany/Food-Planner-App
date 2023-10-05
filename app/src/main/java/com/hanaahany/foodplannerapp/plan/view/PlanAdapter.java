@@ -20,10 +20,12 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
 
     Context context;
     List<Meal> list;
+    OnCancelClick onCancelClick;
 
-    public PlanAdapter(Context context, List<Meal> list) {
+    public PlanAdapter(Context context, List<Meal> list,OnCancelClick onCancelClick) {
         this.context = context;
         this.list = list;
+        this.onCancelClick=onCancelClick;
     }
 
     @NonNull
@@ -42,6 +44,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
         holder.imageViewCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                onCancelClick.deleteMeal(meal);
 
             }
         });
@@ -49,7 +52,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

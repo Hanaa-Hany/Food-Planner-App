@@ -22,7 +22,13 @@ public interface RepositoryInterface {
 
 
     //Plan
-    LiveData<List<Meal>> getMealsOfDay(String day);
+    LiveData<List<Meal>> getMealsOfDaySat();
+    LiveData<List<Meal>> getMealsOfDaySun();
+    LiveData<List<Meal>> getMealsOfDayMon();
+    LiveData<List<Meal>> getMealsOfDayTue();
+    LiveData<List<Meal>> getMealsOfDayWed();
+    LiveData<List<Meal>> getMealsOfDayThu();
+    LiveData<List<Meal>> getMealsOfDayFri();
     void updateDayOfMeal(String id, String day);
 
 }

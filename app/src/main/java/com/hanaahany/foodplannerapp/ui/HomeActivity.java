@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_search));
         bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_favorite));
         bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_plan));
+        bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_account));
 
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
@@ -51,8 +52,6 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 4:
                         navController.navigate(R.id.planFragment);
-
-
                         break;
                 }
                 return null;

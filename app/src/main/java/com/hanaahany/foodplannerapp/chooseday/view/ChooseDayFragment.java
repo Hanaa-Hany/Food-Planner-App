@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,7 +32,7 @@ public class ChooseDayFragment extends Fragment implements ChooseDayViewInterfac
     MaterialButton materialButtonSat, materialButtonSun, materialButtonMon,
             materialButtonTue, materialButtonWed, materialButtonThu, materialButtonFriday,materialButton;
     Meal meal;
-    public static String DAY=null;
+    public static String DAY;
     private static final String TAG = "ChooseDayFragment";
 
     @Override
@@ -44,6 +45,9 @@ public class ChooseDayFragment extends Fragment implements ChooseDayViewInterfac
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (getArguments()!=null){
+          meal=  ChooseDayFragmentArgs.fromBundle(getArguments()).getMeal();
+        }
         mealPresenterInterface=new ChooseDayPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
         initViews();
         onClicks();
@@ -98,7 +102,11 @@ public class ChooseDayFragment extends Fragment implements ChooseDayViewInterfac
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick: "+ MealDetailsFragment.ID_OF_MEAL);
+                meal.setDay(ChooseDayFragment.DAY);
                 mealPresenterInterface.insertMealToFavourite(meal);
+                Log.i(TAG, "onClick: "+meal.getNameOfMeal());
+                Log.i(TAG, "onClick: "+meal.getDay());
+                Toast.makeText(getContext(), "Saved To Plan", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(getView()).navigate(R.id.action_chooseDayFragment_to_planFragment);
             }
         });
@@ -117,7 +125,6 @@ public class ChooseDayFragment extends Fragment implements ChooseDayViewInterfac
 
     @Override
     public void showMealDetails(List<Meal> list) {
-        meal=list.get(0);
-        Log.i(TAG, "showMealDetails: "+list.size());
+
     }
 }

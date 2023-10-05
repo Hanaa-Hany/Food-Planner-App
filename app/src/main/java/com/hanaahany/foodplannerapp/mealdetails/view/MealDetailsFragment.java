@@ -97,7 +97,9 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onClick: "+ID_OF_MEAL);
-                mealPresenterInterface.insertMealToFavourite(meal);
+                //mealPresenterInterface.insertMealToFavourite(meal);
+                MealDetailsFragmentDirections.ActionMealDetailsFragmentToChooseDayFragment action = MealDetailsFragmentDirections.actionMealDetailsFragmentToChooseDayFragment(meal);
+                Navigation.findNavController(getView()).navigate(action);
                // Navigation.findNavController(getView()).navigate(R.id.action_mealDetailsFragment_to_chooseDayFragment);
 
 
@@ -154,9 +156,10 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                 super.onReady(youTubePlayer);
-                youTubePlayer.loadVideo(videoId, 0);
-                youTubePlayer.pause();
-
+                if (videoId!=null) {
+                    youTubePlayer.loadVideo(videoId, 0);
+                    youTubePlayer.pause();
+                }
             }
         });
 

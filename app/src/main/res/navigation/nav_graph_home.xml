@@ -125,6 +125,11 @@
         <action
             android:id="@+id/action_chooseDayFragment_to_planFragment"
             app:destination="@id/planFragment" />
+        <argument
+            android:name="meal"
+            app:argType="com.hanaahany.foodplannerapp.model.Meal" />
+
+
     </fragment>
     <fragment
         android:id="@+id/planFragment"

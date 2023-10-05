@@ -1,5 +1,8 @@
 package com.hanaahany.foodplannerapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -7,7 +10,7 @@ import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "Meal_Table")
-public class Meal {
+public class Meal implements Parcelable {
     @NonNull
     @PrimaryKey
     @ColumnInfo
@@ -152,7 +155,7 @@ public class Meal {
     @SerializedName("strMeasure20")
     private String measure20;
     @ColumnInfo
-    private String day;
+    private String day="no";
 
 
     public Meal(@NonNull String id, String nameOfMeal, String category, String area, String instructions, String image, String youtube, String ingredient1, String ingredient2, String ingredient3, String ingredient4, String ingredient5, String ingredient6, String ingredient7, String ingredient8, String ingredient9, String ingredient10, String ingredient11, String ingredient12, String ingredient13, String ingredient14, String ingredient15, String ingredient16, String ingredient17, String ingredient18, String ingredient19, String ingredient20, String measure1, String measure2, String measure3, String measure4, String measure5, String measure6, String measure7, String measure8, String measure9, String measure10, String measure11, String measure12, String measure13, String measure14, String measure15, String measure16, String measure17, String measure18, String measure19, String measure20, String day) {
@@ -205,6 +208,69 @@ public class Meal {
         this.measure20 = measure20;
         this.day = day;
     }
+
+    protected Meal(Parcel in) {
+        id = in.readString();
+        nameOfMeal = in.readString();
+        category = in.readString();
+        area = in.readString();
+        instructions = in.readString();
+        image = in.readString();
+        youtube = in.readString();
+        ingredient1 = in.readString();
+        ingredient2 = in.readString();
+        ingredient3 = in.readString();
+        ingredient4 = in.readString();
+        ingredient5 = in.readString();
+        ingredient6 = in.readString();
+        ingredient7 = in.readString();
+        ingredient8 = in.readString();
+        ingredient9 = in.readString();
+        ingredient10 = in.readString();
+        ingredient11 = in.readString();
+        ingredient12 = in.readString();
+        ingredient13 = in.readString();
+        ingredient14 = in.readString();
+        ingredient15 = in.readString();
+        ingredient16 = in.readString();
+        ingredient17 = in.readString();
+        ingredient18 = in.readString();
+        ingredient19 = in.readString();
+        ingredient20 = in.readString();
+        measure1 = in.readString();
+        measure2 = in.readString();
+        measure3 = in.readString();
+        measure4 = in.readString();
+        measure5 = in.readString();
+        measure6 = in.readString();
+        measure7 = in.readString();
+        measure8 = in.readString();
+        measure9 = in.readString();
+        measure10 = in.readString();
+        measure11 = in.readString();
+        measure12 = in.readString();
+        measure13 = in.readString();
+        measure14 = in.readString();
+        measure15 = in.readString();
+        measure16 = in.readString();
+        measure17 = in.readString();
+        measure18 = in.readString();
+        measure19 = in.readString();
+        measure20 = in.readString();
+        day = in.readString();
+    }
+
+    public static final Creator<Meal> CREATOR = new Creator<Meal>() {
+        @Override
+        public Meal createFromParcel(Parcel in) {
+            return new Meal(in);
+        }
+
+        @Override
+        public Meal[] newArray(int size) {
+            return new Meal[size];
+        }
+    };
 
     public String getDay() {
         return day;
@@ -588,5 +654,65 @@ public class Meal {
 
     public void setMeasure20(String measure20) {
         this.measure20 = measure20;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(nameOfMeal);
+        parcel.writeString(id);
+        parcel.writeString(day);
+        parcel.writeString(category);
+        parcel.writeString(area);
+        parcel.writeString(image);
+        parcel.writeString(instructions);
+        parcel.writeString(youtube);
+        parcel.writeString(measure1);
+        parcel.writeString(measure2);
+        parcel.writeString(measure3);
+        parcel.writeString(measure4);
+        parcel.writeString(measure5);
+        parcel.writeString(measure6);
+        parcel.writeString(measure7);
+        parcel.writeString(measure8);
+        parcel.writeString(measure9);
+        parcel.writeString(measure10);
+        parcel.writeString(measure11);
+        parcel.writeString(measure12);
+        parcel.writeString(measure13);
+        parcel.writeString(measure14);
+        parcel.writeString(measure15);
+        parcel.writeString(measure16);
+        parcel.writeString(measure17);
+        parcel.writeString(measure18);
+        parcel.writeString(measure19);
+        parcel.writeString(measure20);
+        parcel.writeString(ingredient1);
+        parcel.writeString(ingredient2);
+        parcel.writeString(ingredient3);
+        parcel.writeString(ingredient4);
+        parcel.writeString(ingredient5);
+        parcel.writeString(ingredient6);
+        parcel.writeString(ingredient7);
+        parcel.writeString(ingredient8);
+        parcel.writeString(ingredient9);
+        parcel.writeString(ingredient10);
+        parcel.writeString(ingredient11);
+        parcel.writeString(ingredient12);
+        parcel.writeString(ingredient13);
+        parcel.writeString(ingredient14);
+        parcel.writeString(ingredient15);
+        parcel.writeString(ingredient16);
+        parcel.writeString(ingredient17);
+        parcel.writeString(ingredient18);
+        parcel.writeString(ingredient19);
+        parcel.writeString(ingredient20);
+
+
+
     }
 }

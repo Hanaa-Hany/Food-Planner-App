@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_10sdp"
@@ -9,12 +9,12 @@
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_130sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -24,39 +24,39 @@
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/title_of_day_item"
+            android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/_5sdp"
             android:text="Apetizer"
             android:textColor="#47326B"
+            android:gravity="center"
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/image_day_item"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/white"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:id="@+id/title_of_day_item"
-            />
+            app:layout_constraintTop_toBottomOf="@id/image_day_item" />
+
         <TextView
+            android:id="@+id/category_of_day_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apetizer"
-            app:layout_constraintTop_toBottomOf="@id/title_of_day_item"
-            app:layout_constraintStart_toStartOf="parent"
+            android:alpha=".5"
             android:background="@color/white"
             android:padding="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:alpha=".5"
-            android:id="@+id/category_of_day_item"
-            />
+            android:text="Apetizer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_of_day_item" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:id="@+id/cancel_icon"/>
 
 

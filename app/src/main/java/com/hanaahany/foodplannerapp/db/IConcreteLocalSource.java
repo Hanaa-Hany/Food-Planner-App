@@ -19,6 +19,13 @@ public interface IConcreteLocalSource {
 
 
 
-    LiveData<List<Meal>> getMealsOfDay(String day);
+    LiveData<List<Meal>> getMealsOfDaySaturday();
+    LiveData<List<Meal>> getMealsOfDaySunday();
+    LiveData<List<Meal>> getMealsOfDayMonday();
+    LiveData<List<Meal>> getMealsOfDayTuesday();
+    LiveData<List<Meal>> getMealsOfDayWednseday();
+    LiveData<List<Meal>> getMealsOfDayThursday();
+    LiveData<List<Meal>> getMealsOfDayFriday();
+
     void updateDayOfMeal(String id, String day);
 }

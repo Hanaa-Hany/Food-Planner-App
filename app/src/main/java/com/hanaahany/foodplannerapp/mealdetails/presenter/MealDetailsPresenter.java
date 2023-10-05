@@ -31,21 +31,6 @@ public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInter
 
     }
 
-    @Override
-    public void getMeal(String day) {
-
-    }
-
-//    @Override
-//    public void updateDayOfMeal(String id, String day) {
-//
-//        _repo.updateDayOfMeal(id,day);
-//    }
-//
-//    @Override
-//    public void getMealById(String id) {
-//
-//    }
 
     @Override
     public void onSuccess(List<?> list) {
