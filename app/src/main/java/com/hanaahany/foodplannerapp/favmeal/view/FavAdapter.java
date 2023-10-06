@@ -44,6 +44,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         Meal meal=mealList.get(position);
         holder.textViewTitleOfCategory.setText(meal.getNameOfMeal());
         Glide.with(context).load(meal.getImage())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
                 .into(holder.imageViewCategory);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

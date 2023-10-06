@@ -42,6 +42,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Category category=arrayList.get(position);
         holder.textViewTitleOfCategory.setText(category.getCategoryName());
         Glide.with(context).load(category.getCategoryImage())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
                 .into(holder.imageViewCategory);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

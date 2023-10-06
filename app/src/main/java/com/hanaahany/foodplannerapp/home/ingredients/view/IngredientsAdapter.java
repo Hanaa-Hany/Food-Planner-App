@@ -43,6 +43,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         Ingredients ingredients=ingredientsList.get(position);
         holder.textViewIngredients.setText(ingredients.getName());
         Glide.with(context).load(flags[position])
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
                 .into(holder.circleImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

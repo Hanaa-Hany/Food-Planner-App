@@ -11,9 +11,12 @@
         android:layout_height="@dimen/_200sdp"
         android:background="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_350sdp"
         android:layout_margin="@dimen/_20sdp"
@@ -31,19 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circle_image_profile"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:src="@drawable/background"
-                android:elevation="@dimen/_10sdp"
-                />
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_email"
@@ -51,9 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
                 android:hint="@string/email"
                 app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
                 app:boxCornerRadiusBottomStart="@dimen/_8sdp"
@@ -61,7 +49,8 @@
                 app:boxCornerRadiusTopStart="@dimen/_8sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/circle_image_profile"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_40sdp"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -90,8 +79,8 @@
                 app:layout_constraintEnd_toEndOf="@id/layout_email"
                 app:layout_constraintStart_toStartOf="@id/layout_email"
                 app:layout_constraintTop_toBottomOf="@id/layout_email"
-                app:startIconDrawable="@drawable/ic_lock"
                 app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_lock"
 
                 >
 
@@ -118,8 +107,8 @@
                 app:layout_constraintEnd_toEndOf="@id/layout_email"
                 app:layout_constraintStart_toStartOf="@id/layout_email"
                 app:layout_constraintTop_toBottomOf="@id/layout_password_sign_up"
-                app:startIconDrawable="@drawable/ic_lock"
                 app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_lock"
 
                 >
 
@@ -155,6 +144,16 @@
 
     </androidx.cardview.widget.CardView>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circle_image_profile"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:elevation="@dimen/_6sdp"
+        android:src="@drawable/background"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

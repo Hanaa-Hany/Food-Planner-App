@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment implements CategoryFragmentViewInterf
         recyclerViewCotegories = getView().findViewById(R.id.recycler_category);
         recyclerViewCountries = getView().findViewById(R.id.recycler_country);
         recyclerViewIngredients=getView().findViewById(R.id.recycler_ingredient);
-        recyclerViewCotegories.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
+        recyclerViewCotegories.setLayoutManager(new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false));
         recyclerViewCountries.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
         recyclerViewIngredients.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
         imageViewSingleMeal=getView().findViewById(R.id.image_meal_of_the_day);

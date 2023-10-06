@@ -26,9 +26,12 @@
     <string name="tuesday">Tuesday</string>
     <string name="monday">Monday</string>
     <string name="what_day_should_we_add_this_reciepe_to">What day should we add this reciepe to</string>
-<!--    <string name="default_web_client_id">412117464930-o0rih8no4vv4klogopddtp065c3inv2p.apps.googleusercontent.com</string>-->
+    <!--    <string name="default_web_client_id">412117464930-o0rih8no4vv4klogopddtp065c3inv2p.apps.googleusercontent.com</string>-->
     <string name="loading">Loading</string>
     <string name="let_s_cook_it">Let\'s cook it</string>
+    <string name="about_us">About Us</string>
+    <string name="log_out">Log Out</string>
+    <string name="general_settings">General Settings</string>
     <string-array name="flags">
         <item>https://www.worldometers.info/img/flags/us-flag.gif</item>
         <item>https://www.worldometers.info/img/flags/uk-flag.gif</item>

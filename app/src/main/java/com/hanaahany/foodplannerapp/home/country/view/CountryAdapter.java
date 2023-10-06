@@ -44,6 +44,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         Country country=countryList.get(position);
         holder.textViewName.setText(country.getNameOfCountry());
         Glide.with(context).load(flags[position])
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
                 .into(holder.circleImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

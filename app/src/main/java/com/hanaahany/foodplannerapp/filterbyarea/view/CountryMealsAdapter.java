@@ -41,6 +41,8 @@ public class CountryMealsAdapter extends RecyclerView.Adapter<CountryMealsAdapte
         CountryMeals countryMeals=countryMealsList.get(position);
         holder.textViewTitleOfCategory.setText(countryMeals.getName());
         Glide.with(context).load(countryMeals.getImage())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
                 .into(holder.imageViewCategory);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

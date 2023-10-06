@@ -40,7 +40,10 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
         Meal meal=list.get(position);
         holder.textViewTitle.setText(meal.getNameOfMeal());
         holder.textViewCategory.setText(meal.getCategory());
-        Picasso.get().load(meal.getImage()).into(holder.imageViewMeal);
+        Picasso.get().load(meal.getImage())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
+                .into(holder.imageViewMeal);
         holder.imageViewCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +34,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class SplachScreenFragment extends Fragment {
 
     FirebaseAuth mAuth;
+    TextView textViewLogo;
 
     private static final String TAG = "SplachScreenFragment";
 
@@ -46,6 +50,11 @@ public class SplachScreenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        textViewLogo=getView().findViewById(R.id.tv_logo);
+
+                Animation anim= AnimationUtils.loadAnimation(getContext(),R.anim.logo_animation);
+                textViewLogo.startAnimation(anim);
+
         mAuth=FirebaseAuth.getInstance();
         if (getArguments()!=null){
 
@@ -70,6 +79,7 @@ public class SplachScreenFragment extends Fragment {
 
                         if (mAuth.getCurrentUser()!=null){
                             startActivity(new Intent(getActivity(), HomeActivity.class));
+                            getActivity().finish();
 
                         }else {
                             navController.navigate(R.id.action_splachScreenFragment_to_signFragment);

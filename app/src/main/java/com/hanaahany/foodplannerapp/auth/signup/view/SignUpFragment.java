@@ -1,6 +1,9 @@
 package com.hanaahany.foodplannerapp.auth.signup.view;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -90,6 +93,23 @@ public class SignUpFragment extends Fragment {
                 }
             }
         });
+        imageViewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,1);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1&&resultCode==RESULT_OK&&data!=null){
+            Uri image=data.getData();
+            imageViewProfile.setImageURI(image);
+        }
     }
 
     private void updateUI(FirebaseUser user) {
@@ -99,7 +119,7 @@ public class SignUpFragment extends Fragment {
     }
 
     private void initViews() {
-        imageViewProfile=getView().findViewById(R.id.imageView);
+        imageViewProfile=getView().findViewById(R.id.circle_image_profile);
         textInputEditTextEmail=getView().findViewById(R.id.et_email_sign_up);
         textInputEditTextPassword=getView().findViewById(R.id.et_password_sign_up);
         textInputEditTextConfirmPass=getView().findViewById(R.id.et_confirm_password_sign_up);

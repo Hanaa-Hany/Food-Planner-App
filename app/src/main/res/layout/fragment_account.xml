@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".auth.AccountFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/image_profile"
+        android:src="@drawable/background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_profile"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:text="Hanaa Hany"
+        android:id="@+id/tv_name_of_user"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_name_of_user"
+        app:layout_constraintStart_toEndOf="@id/image_profile"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:text="hanaahany822@gmail.com"
+        android:id="@+id/tv_email_of_user"/>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/image_profile"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_of_user"
+        android:layout_marginStart="@dimen/_20sdp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="Edit Profile"
+        android:textColor="@color/pink"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/_20sdp"
+        android:id="@+id/btn_edit_profile"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_10sdp"
+        android:elevation="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_profile">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/general_settings"
+            android:padding="@dimen/_10sdp"
+            android:drawableStart="@drawable/ic_setting"
+            android:drawablePadding="@dimen/_10sdp"
+            android:id="@+id/tv_general_setting"
+            android:drawableEnd="@drawable/ic_arrow"
+             />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@color/gray"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_us"
+                android:padding="@dimen/_10sdp"
+                android:drawableStart="@drawable/ic_report"
+                android:drawablePadding="@dimen/_10sdp"
+                android:id="@+id/tv_about_us"
+                android:drawableEnd="@drawable/ic_arrow"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_margin="@dimen/_2sdp"
+                android:background="@color/gray"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_out"
+                android:padding="@dimen/_10sdp"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawablePadding="@dimen/_10sdp"
+                android:id="@+id/tv_log_out"
+                android:drawableEnd="@drawable/ic_arrow"
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
