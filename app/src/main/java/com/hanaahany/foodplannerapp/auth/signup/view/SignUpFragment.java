@@ -24,7 +24,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.model.UserData;
 import com.hanaahany.foodplannerapp.ui.HomeActivity;
 
 import java.util.concurrent.Executor;
@@ -34,10 +40,16 @@ import java.util.regex.Pattern;
 public class SignUpFragment extends Fragment {
 
     ImageView imageViewProfile;
-    TextInputEditText textInputEditTextEmail,textInputEditTextPassword,textInputEditTextConfirmPass;
+    TextInputEditText textInputEditTextEmail,textInputEditTextPassword,textInputEditTextConfirmPass,textInputEditTextUserName;
     MaterialButton materialButtonSignUp;
     private FirebaseAuth mAuth;
+    private final StorageReference storageReference= FirebaseStorage.getInstance().getReference();
+    private final FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
     private static final String TAG = "SignUpFragment";
+    Uri image;
+    String imageURL;
+    String email;
+    String userName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,7 +76,8 @@ public class SignUpFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                String email=textInputEditTextEmail.getText().toString().trim();
+                email=textInputEditTextEmail.getText().toString().trim();
+                userName=textInputEditTextUserName.getText().toString().trim();
                 String password=textInputEditTextPassword.getText().toString().trim();
                 String confirm=textInputEditTextConfirmPass.getText().toString().trim();
                 isValidPassword(password);
@@ -78,7 +91,7 @@ public class SignUpFragment extends Fragment {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.i(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        updateUI(user);
+                                        uploadImage();
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -107,15 +120,65 @@ public class SignUpFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==1&&resultCode==RESULT_OK&&data!=null){
-            Uri image=data.getData();
+            image=data.getData();
             imageViewProfile.setImageURI(image);
         }
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI() {
         Intent intent=new Intent(getActivity(), HomeActivity.class);
-        intent.putExtra("Token",user);
+       // intent.putExtra("Token",user);
         startActivity(intent);
+    }
+    //Upload Profile image in Firebase Storage
+    private void uploadImage(){
+        storageReference.child("Photos")
+                .child(mAuth.getCurrentUser().getUid())
+                .putFile(image).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getContext(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                            getImageURL();
+                        }else {
+                            Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+    //get Image url after uploading in storage
+    private  void getImageURL(){
+        storageReference.child("Photos")
+                .child(mAuth.getCurrentUser().getUid())
+                .getDownloadUrl()
+                .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+                            imageURL=task.getResult().toString();
+                            uploadUserData();
+                        }else {
+                            Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    //Upload Data of user in FireStore db
+    private void uploadUserData() {
+        UserData userInfo=new UserData(email,userName,imageURL);
+        firebaseFirestore.collection("Users")
+                .document(mAuth.getCurrentUser().getUid())
+                .set(userInfo)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            updateUI();
+                        }
+                    }
+                });
     }
 
     private void initViews() {
@@ -124,6 +187,7 @@ public class SignUpFragment extends Fragment {
         textInputEditTextPassword=getView().findViewById(R.id.et_password_sign_up);
         textInputEditTextConfirmPass=getView().findViewById(R.id.et_confirm_password_sign_up);
         materialButtonSignUp=getView().findViewById(R.id.btn_sign_up);
+        textInputEditTextUserName=getView().findViewById(R.id.et_user_name_sign_up);
 
 
     }
