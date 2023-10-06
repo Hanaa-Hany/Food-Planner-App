@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -35,6 +36,7 @@ public class LoginFragment extends Fragment {
     NavController navController;
     FirebaseAuth firebaseAuth;
     private static final String TAG = "LoginFragment";
+    LottieAnimationView lottieAnimationViewLoading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +65,7 @@ public class LoginFragment extends Fragment {
         materialButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lottieAnimationViewLoading.setVisibility(View.VISIBLE);
                 String email=textInputEditTextEmail.getText().toString().trim();
                 String password=textInputEditTextPassword.getText().toString().trim();
                 Log.i(TAG, "onClick: "+email);
@@ -80,20 +83,21 @@ public class LoginFragment extends Fragment {
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     Toast.makeText(getContext(), "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
+                                    lottieAnimationViewLoading.setVisibility(View.INVISIBLE);
+                                    //updateUI(null);
                                 }
                             }
                         });
 
-                Intent intent=new Intent(getActivity(), HomeActivity.class);
-                startActivity(intent);
+//                Intent intent=new Intent(getActivity(), HomeActivity.class);
+//                startActivity(intent);
             }
         });
     }
 
     private void updateUI(FirebaseUser user) {
         Intent intent=new Intent(getActivity(),HomeActivity.class);
-
+        lottieAnimationViewLoading.setVisibility(View.INVISIBLE);
         startActivity(intent);
     }
 
@@ -102,6 +106,7 @@ public class LoginFragment extends Fragment {
         textInputEditTextPassword=getView().findViewById(R.id.et_confirm_password_login);
         materialButtonLogin=getView().findViewById(R.id.btn_login);
         textViewForgotPassword=getView().findViewById(R.id.tv_forget_password);
+        lottieAnimationViewLoading=getView().findViewById(R.id.lotti_login);
 
     }
 }

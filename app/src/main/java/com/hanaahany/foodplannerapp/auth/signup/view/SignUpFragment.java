@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -45,6 +46,7 @@ public class SignUpFragment extends Fragment {
     private FirebaseAuth mAuth;
     private final StorageReference storageReference= FirebaseStorage.getInstance().getReference();
     private final FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
+    LottieAnimationView lottieAnimationViewLoading;
     private static final String TAG = "SignUpFragment";
     Uri image;
     String imageURL;
@@ -82,7 +84,11 @@ public class SignUpFragment extends Fragment {
                 String confirm=textInputEditTextConfirmPass.getText().toString().trim();
                 isValidPassword(password);
                 //String regex="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$";
-                if (isValidPassword(password)==true&&password.equals(confirm)) {
+                if (email.isEmpty()||password.isEmpty()||confirm.isEmpty()||userName.isEmpty()||image==null){
+                    return;
+                }
+                else if (isValidPassword(password)&&password.equals(confirm)) {
+                    lottieAnimationViewLoading.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -92,11 +98,13 @@ public class SignUpFragment extends Fragment {
                                         Log.i(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         uploadImage();
+
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(getContext(), "Authentication failed.",
+                                        Toast.makeText(getContext(), task.getException().getLocalizedMessage(),
                                                 Toast.LENGTH_SHORT).show();
+                                        lottieAnimationViewLoading.setVisibility(View.INVISIBLE);
                                         //updateUI(null);
                                     }
                                 }
@@ -127,7 +135,7 @@ public class SignUpFragment extends Fragment {
 
     private void updateUI() {
         Intent intent=new Intent(getActivity(), HomeActivity.class);
-       // intent.putExtra("Token",user);
+        lottieAnimationViewLoading.setVisibility(View.INVISIBLE);
         startActivity(intent);
     }
     //Upload Profile image in Firebase Storage
@@ -138,7 +146,7 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getContext(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
                             getImageURL();
                         }else {
                             Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -157,6 +165,7 @@ public class SignUpFragment extends Fragment {
                         if (task.isSuccessful()){
                             imageURL=task.getResult().toString();
                             uploadUserData();
+
                         }else {
                             Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -176,6 +185,9 @@ public class SignUpFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             updateUI();
+                            Toast.makeText(getContext(), "Sign Up Successfully", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -188,6 +200,7 @@ public class SignUpFragment extends Fragment {
         textInputEditTextConfirmPass=getView().findViewById(R.id.et_confirm_password_sign_up);
         materialButtonSignUp=getView().findViewById(R.id.btn_sign_up);
         textInputEditTextUserName=getView().findViewById(R.id.et_user_name_sign_up);
+        lottieAnimationViewLoading=getView().findViewById(R.id.lotti);
 
 
     }
