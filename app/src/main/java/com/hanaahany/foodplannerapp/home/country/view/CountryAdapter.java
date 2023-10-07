@@ -12,11 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
-import com.hanaahany.foodplannerapp.home.country.model.Country;
+import com.hanaahany.foodplannerapp.model.Country;
 
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHolder> {
 

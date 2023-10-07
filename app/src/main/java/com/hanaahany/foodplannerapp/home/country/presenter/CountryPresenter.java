@@ -2,7 +2,7 @@ package com.hanaahany.foodplannerapp.home.country.presenter;
 
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;
-import com.hanaahany.foodplannerapp.home.country.model.Country;
+import com.hanaahany.foodplannerapp.model.Country;
 import com.hanaahany.foodplannerapp.home.country.view.CountryViewInterface;
 
 import java.util.List;

@@ -32,11 +32,11 @@ import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.MealsClient;
 
-import com.hanaahany.foodplannerapp.home.category.model.Category;
+import com.hanaahany.foodplannerapp.model.Category;
 import com.hanaahany.foodplannerapp.home.category.presenter.CategoryPresenter;
 import com.hanaahany.foodplannerapp.home.category.presenter.CategoryPresenterInterface;
 import com.hanaahany.foodplannerapp.home.category.view.CategoryAdapter;
-import com.hanaahany.foodplannerapp.home.country.model.Country;
+import com.hanaahany.foodplannerapp.model.Country;
 import com.hanaahany.foodplannerapp.home.country.presenter.CountryPresenter;
 import com.hanaahany.foodplannerapp.home.country.presenter.CountryPresenterInterface;
 import com.hanaahany.foodplannerapp.home.country.view.CountryAdapter;

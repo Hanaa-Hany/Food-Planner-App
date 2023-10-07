@@ -11,6 +11,10 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "Meal_Table")
 public class Meal implements Parcelable {
+    public Meal() {
+
+    }
+
     @NonNull
     @PrimaryKey
     @ColumnInfo
@@ -660,6 +664,8 @@ public class Meal implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {

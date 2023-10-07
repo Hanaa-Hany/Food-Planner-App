@@ -2,8 +2,8 @@ package com.hanaahany.foodplannerapp.network;
 
 import com.hanaahany.foodplannerapp.filterbyarea.model.CountryMealsResponse;
 import com.hanaahany.foodplannerapp.model.MealResponse;
-import com.hanaahany.foodplannerapp.home.category.model.CategoryResponse;
-import com.hanaahany.foodplannerapp.home.country.model.CountryResponse;
+import com.hanaahany.foodplannerapp.model.CategoryResponse;
+import com.hanaahany.foodplannerapp.model.CountryResponse;
 import com.hanaahany.foodplannerapp.model.IngredientsResponse;
 
 import retrofit2.Call;

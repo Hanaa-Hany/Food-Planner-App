@@ -2,7 +2,7 @@ package com.hanaahany.foodplannerapp.home.category.presenter;
 
 import com.hanaahany.foodplannerapp.home.category.view.CategoryFragmentViewInterface;
 import com.hanaahany.foodplannerapp.model.Repository;
-import com.hanaahany.foodplannerapp.home.category.model.Category;
+import com.hanaahany.foodplannerapp.model.Category;
 import com.hanaahany.foodplannerapp.network.NetworkCallBack;
 
 import java.util.List;

@@ -29,6 +29,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.filterbycategory.view.CategoryMealsFragmentArgs;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,6 +59,12 @@ public class EditProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+        if (getArguments()!=null){
+            String image=EditProfileFragmentArgs.fromBundle(getArguments()).getImageUser();
+            String user=EditProfileFragmentArgs.fromBundle(getArguments()).getUserName();
+            textInputEditTextUserName.setHint(user);
+            Picasso.get().load(image).into(circleImageViewProfile);
+        }
         onClicks();
     }
 

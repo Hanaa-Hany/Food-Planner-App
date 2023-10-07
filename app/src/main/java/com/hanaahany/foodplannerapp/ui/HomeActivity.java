@@ -1,12 +1,14 @@
 package com.hanaahany.foodplannerapp.ui;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.firebase.auth.FirebaseAuth;
 import com.hanaahany.foodplannerapp.R;
 
 import kotlin.Unit;
@@ -16,6 +18,7 @@ public class HomeActivity extends AppCompatActivity {
 
     NavController navController;
     private MeowBottomNavigation bottomNavigation;
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,18 @@ public class HomeActivity extends AppCompatActivity {
                         navController.navigate(R.id.searchFragment);
                         break;
                     case 3:
-                        navController.navigate(R.id.favFragment);
+                        if (firebaseAuth.getCurrentUser().isAnonymous()) {
+                            Toast.makeText(HomeActivity.this, "You should Signup", Toast.LENGTH_SHORT).show();
+                        } else {
+                            navController.navigate(R.id.favFragment);
+                        }
                         break;
                     case 4:
-                        navController.navigate(R.id.planFragment);
+                        if (firebaseAuth.getCurrentUser().isAnonymous()) {
+                            Toast.makeText(HomeActivity.this, "You should Signup", Toast.LENGTH_SHORT).show();
+                        } else {
+                            navController.navigate(R.id.planFragment);
+                        }
                         break;
                     case 5:
                         navController.navigate(R.id.accountFragment);

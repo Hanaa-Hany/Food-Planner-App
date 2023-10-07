@@ -1,7 +1,7 @@
-package com.hanaahany.foodplannerapp.home.country.model;
+package com.hanaahany.foodplannerapp.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.hanaahany.foodplannerapp.home.country.model.Country;
+import com.hanaahany.foodplannerapp.model.Country;
 
 import java.util.List;
 

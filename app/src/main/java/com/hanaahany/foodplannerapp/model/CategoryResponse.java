@@ -1,6 +1,6 @@
-package com.hanaahany.foodplannerapp.home.category.model;
+package com.hanaahany.foodplannerapp.model;
 
-import com.hanaahany.foodplannerapp.home.category.model.Category;
+import com.hanaahany.foodplannerapp.model.Category;
 
 import java.util.List;
 

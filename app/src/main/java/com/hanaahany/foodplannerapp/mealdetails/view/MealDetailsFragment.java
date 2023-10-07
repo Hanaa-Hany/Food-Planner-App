@@ -20,7 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.hanaahany.foodplannerapp.R;
 import com.hanaahany.foodplannerapp.chooseday.view.ChooseDayFragment;
 import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
@@ -36,7 +42,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,6 +63,10 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     MaterialButton materialButtonFav,materialButtonPlan;
     Meal meal;
     String id;
+    private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    public static List<Meal>meals=new ArrayList<>();
 
 
     @Override
@@ -90,6 +102,10 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
             @Override
             public void onClick(View view) {
                 mealPresenterInterface.insertMealToFavourite(meal);
+
+                meals.add(meal);
+                backupFav(meals);
+                Log.i(TAG, "onClick: "+meals.size());
                 Toast.makeText(getContext(), "Saved to fav", Toast.LENGTH_SHORT).show();
             }
         });
@@ -222,6 +238,23 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, System.currentTimeMillis())//start time now
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, System.currentTimeMillis() + (60 * 60 * 1000)); // End time is 1 hour after start time
         startActivity(intent);
+    }
+    private void backupFav(List mealFav) {
+        //
+        Map<String, List<Meal>> docData = new HashMap<>();
+        docData.put("List", mealFav);
+        firebaseFirestore.collection("FavMeal")
+                .document(firebaseAuth.getCurrentUser().getUid())
+                .set(docData)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Backup Fav Successfully", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }

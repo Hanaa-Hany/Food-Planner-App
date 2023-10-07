@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="@dimen/_10sdp"
         android:id="@+id/image_profile"
-        android:src="@drawable/background"/>
+        android:src="@drawable/anonymous"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +23,6 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:text="Hanaa Hany"
         android:id="@+id/tv_name_of_user"
         android:textColor="@color/black"
         android:textSize="@dimen/_16ssp"/>
@@ -34,7 +33,6 @@
         app:layout_constraintStart_toEndOf="@id/image_profile"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:text="hanaahany822@gmail.com"
         android:id="@+id/tv_email_of_user"/>
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"

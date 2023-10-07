@@ -28,4 +28,9 @@ public class FavPresenter implements FavPresenterInterface {
     public void deleteMeal(Meal meal) {
         _repo.deleteMealFav(meal);
     }
+
+    @Override
+    public void backupFav(Meal meal) {
+
+    }
 }

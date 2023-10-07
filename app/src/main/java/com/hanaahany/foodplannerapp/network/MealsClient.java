@@ -8,8 +8,8 @@ import com.hanaahany.foodplannerapp.filterbycategory.view.CategoryMealsFragment;
 import com.hanaahany.foodplannerapp.filterbyingredient.view.IngredientMealsFragment;
 import com.hanaahany.foodplannerapp.mealdetails.view.MealDetailsFragment;
 import com.hanaahany.foodplannerapp.model.MealResponse;
-import com.hanaahany.foodplannerapp.home.category.model.CategoryResponse;
-import com.hanaahany.foodplannerapp.home.country.model.CountryResponse;
+import com.hanaahany.foodplannerapp.model.CategoryResponse;
+import com.hanaahany.foodplannerapp.model.CountryResponse;
 import com.hanaahany.foodplannerapp.model.IngredientsResponse;
 import com.hanaahany.foodplannerapp.search.view.SearchFragment;
 

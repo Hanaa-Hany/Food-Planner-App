@@ -1,4 +1,4 @@
-package com.hanaahany.foodplannerapp.home.category.model;
+package com.hanaahany.foodplannerapp.model;
 
 import com.google.gson.annotations.SerializedName;
 

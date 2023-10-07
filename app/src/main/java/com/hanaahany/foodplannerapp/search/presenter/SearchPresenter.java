@@ -1,7 +1,7 @@
 package com.hanaahany.foodplannerapp.search.presenter;
 
-import com.hanaahany.foodplannerapp.home.category.model.Category;
-import com.hanaahany.foodplannerapp.home.country.model.Country;
+import com.hanaahany.foodplannerapp.model.Category;
+import com.hanaahany.foodplannerapp.model.Country;
 import com.hanaahany.foodplannerapp.model.Ingredients;
 import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.Repository;

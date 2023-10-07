@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.hanaahany.foodplannerapp.R;
-import com.hanaahany.foodplannerapp.home.category.model.Category;
+import com.hanaahany.foodplannerapp.model.Category;
 
 import java.util.List;
 
