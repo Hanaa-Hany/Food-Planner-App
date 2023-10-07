@@ -30,12 +30,17 @@ public class ChooseDayPresenter implements NetworkCallBack, MealPresenterInterfa
 
     @Override
     public void insertMealToFavourite(Meal meal) {
-        _repo.insertMealFav(meal);
+
     }
 
     @Override
     public void deleteMeal(Meal meal) {
         _repo.deleteMealFav(meal);
+    }
+
+    @Override
+    public void insertMealToPlan(Meal meal) {
+        _repo.insertMealFav(meal);
     }
 
 //    @Override

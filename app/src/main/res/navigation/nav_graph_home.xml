@@ -68,19 +68,39 @@
             app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_searchFragment_to_categoryMealsFragment"
-            app:destination="@id/categoryMealsFragment" />
+            app:destination="@id/categoryMealsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_searchFragment_to_ingredientMealsFragment"
-            app:destination="@id/ingredientMealsFragment" />
+            app:destination="@id/ingredientMealsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_searchFragment_to_countryMealsFragment"
-            app:destination="@id/countryMealsFragment" />
+            app:destination="@id/countryMealsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_searchFragment_to_mealDetailsFragment"
-            app:destination="@id/mealDetailsFragment" />
+            app:destination="@id/mealDetailsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_searchFragment_to_favFragment"
-            app:destination="@id/favFragment" />
+            app:destination="@id/favFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/countryMealsFragment"
@@ -92,7 +112,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_countryMealsFragment_to_mealDetailsFragment"
-            app:destination="@id/mealDetailsFragment" />
+            app:destination="@id/mealDetailsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/ingredientMealsFragment"
@@ -102,7 +126,11 @@
         <argument android:name="nameOfIngredients" />
         <action
             android:id="@+id/action_ingredientMealsFragment_to_mealDetailsFragment"
-            app:destination="@id/mealDetailsFragment" />
+            app:destination="@id/mealDetailsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/categoryMealsFragment"
@@ -114,7 +142,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_categoryMealsFragment_to_mealDetailsFragment"
-            app:destination="@id/mealDetailsFragment" />
+            app:destination="@id/mealDetailsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/mealDetailsFragment"
@@ -125,7 +157,11 @@
             app:argType="string" />
         <action
             android:id="@+id/action_mealDetailsFragment_to_chooseDayFragment"
-            app:destination="@id/chooseDayFragment" />
+            app:destination="@id/chooseDayFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/favFragment"
@@ -134,7 +170,11 @@
         tools:layout="@layout/fragment_fav" >
         <action
             android:id="@+id/action_favFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_favFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -144,7 +184,17 @@
             app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_favFragment_to_mealDetailsFragment"
-            app:destination="@id/mealDetailsFragment" />
+            app:destination="@id/mealDetailsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <argument
+            android:name="favBackup"
+            app:argType="com.hanaahany.foodplannerapp.favmeal.view.FavBackup"
+
+            />
+
     </fragment>
     <fragment
         android:id="@+id/chooseDayFragment"
@@ -153,13 +203,22 @@
         tools:layout="@layout/fragment_choose_day" >
         <action
             android:id="@+id/action_chooseDayFragment_to_mealDetailsFragment"
-            app:destination="@id/mealDetailsFragment" />
+            app:destination="@id/mealDetailsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_chooseDayFragment_to_planFragment"
-            app:destination="@id/planFragment" />
+            app:destination="@id/planFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <argument
             android:name="meal"
-            app:argType="com.hanaahany.foodplannerapp.model.Meal" />
+            app:argType="com.hanaahany.foodplannerapp.model.Meal"
+           />
 
 
     </fragment>
@@ -176,6 +235,13 @@
         <action
             android:id="@+id/action_accountFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_accountFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
@@ -199,5 +265,14 @@
         <argument
             android:name="userName"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.hanaahany.foodplannerapp.auth.account.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_favFragment"
+            app:destination="@id/favFragment" />
     </fragment>
 </navigation>

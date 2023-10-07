@@ -138,6 +138,7 @@ public class PlanFragment extends Fragment implements PlanViewInterface , OnCanc
                     Log.i(TAG, "showData: "+planAdapter.list.size());
                     planAdapter.notifyDataSetChanged();
                 }
+
             }
         });
     }
@@ -150,6 +151,6 @@ public class PlanFragment extends Fragment implements PlanViewInterface , OnCanc
     @Override
     public void deleteMeal(Meal meal) {
         planPresenterInterface.deleteMeal(meal);
-        planAdapter.notifyDataSetChanged();
+
     }
 }

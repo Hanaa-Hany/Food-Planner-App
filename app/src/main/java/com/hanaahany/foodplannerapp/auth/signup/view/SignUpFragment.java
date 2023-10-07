@@ -85,6 +85,7 @@ public class SignUpFragment extends Fragment {
                 isValidPassword(password);
                 //String regex="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$";
                 if (email.isEmpty()||password.isEmpty()||confirm.isEmpty()||userName.isEmpty()||image==null){
+                    Toast.makeText(getContext(), "Please,Fill the Info", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else if (isValidPassword(password)&&password.equals(confirm)) {
@@ -109,8 +110,13 @@ public class SignUpFragment extends Fragment {
                                     }
                                 }
                             });
+                }else if (!password.equals(confirm)){
+                    Toast.makeText(getContext(), "Confirm doesn't match with Password", Toast.LENGTH_SHORT).show();
+
+                    //textInputEditTextPassword.setError("must contain 1 letter small,capital , special char,and 8 digit at least");
                 }else{
-                    textInputEditTextPassword.setError("must contain 1 letter small,capital , special char,and 8 digit at least");
+                    Toast.makeText(getContext(), "must contain 1 letter small,capital , special char,and 8 digit at least", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

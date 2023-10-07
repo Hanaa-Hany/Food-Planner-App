@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.auth.account.SettingFragment;
 import com.hanaahany.foodplannerapp.db.ConcreteLocalSource;
 import com.hanaahany.foodplannerapp.favmeal.presenter.FavPresenter;
 import com.hanaahany.foodplannerapp.favmeal.presenter.FavPresenterInterface;
@@ -31,6 +32,7 @@ import com.hanaahany.foodplannerapp.model.Meal;
 import com.hanaahany.foodplannerapp.model.Repository;
 import com.hanaahany.foodplannerapp.network.MealsClient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,9 @@ public class FavFragment extends Fragment implements FavViewInterface, OnFavClic
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    List<Meal> list = new ArrayList<>();
+
+
 //    ArrayList<Meal>list1=new ArrayList<>();
 
     @Override
@@ -57,10 +62,17 @@ public class FavFragment extends Fragment implements FavViewInterface, OnFavClic
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews();
+        if (SettingFragment.listBack!=null) {
+            favAdapter = new FavAdapter(SettingFragment.listBack, getContext(), FavFragment.this);
+            recyclerView.setAdapter(favAdapter);
+            favAdapter.notifyDataSetChanged();
+        }
+
         favPresenterInterface = new FavPresenter(this, Repository.getInstance(MealsClient.getInstance(), ConcreteLocalSource.getInstance(getContext())));
         favPresenterInterface.getFavMeal();
 
     }
+
 
     private void initViews() {
         recyclerView = getView().findViewById(R.id.recycler_fav);
@@ -73,18 +85,31 @@ public class FavFragment extends Fragment implements FavViewInterface, OnFavClic
         list.observe(getViewLifecycleOwner(), new Observer<List<Meal>>() {
             @Override
             public void onChanged(List<Meal> meals) {
-                if (meals.isEmpty()) {
-                    getFavFromBackup();
-                    Log.i(TAG, "onChanged: " + meals.size());
-                } else {
-                    //list1.addAll(meals);
-                    Log.i(TAG, "onChanged: " + meals.size());
-                    //backupFav(meals);
-                    //getFavFromBackup();
-                    favAdapter = new FavAdapter(meals, getContext(), FavFragment.this);
-                    recyclerView.setAdapter(favAdapter);
-                    favAdapter.notifyDataSetChanged();
+                String day = "";
+//                if (meals.isEmpty()) {
+//                    getFavFromBackup();
+//                    Log.i(TAG, "onChanged: " + meals.size());
+//                }
+
+                for (int i = 0; i < meals.size(); i++) {
+
+                    day = meals.get(i).getDay();
+                    Log.i(TAG, "showMealDetails: " + meals.size());
+                    Log.i(TAG, "showMealDetails: " + day);
+
+                    if (day.equals("no")) {
+                        favAdapter = new FavAdapter(meals, getContext(), FavFragment.this);
+                        recyclerView.setAdapter(favAdapter);
+                        favAdapter.notifyDataSetChanged();
+
+                    }
                 }
+
+
+                Log.i(TAG, "onChanged: ");
+                Log.i(TAG, "onChanged: " + meals.size());
+
+
             }
 
 
@@ -92,6 +117,7 @@ public class FavFragment extends Fragment implements FavViewInterface, OnFavClic
 
 
     }
+
 
     @Override
     public void getMealDetails(String id) {
@@ -103,6 +129,7 @@ public class FavFragment extends Fragment implements FavViewInterface, OnFavClic
     @Override
     public void deleteMeal(Meal meal) {
         favPresenterInterface.deleteMeal(meal);
+
     }
 
     private void backupFav(List mealFav) {
@@ -133,18 +160,19 @@ public class FavFragment extends Fragment implements FavViewInterface, OnFavClic
                         if (task.isSuccessful()) {
 
                             DocumentSnapshot document = task.getResult();
-                             FavBackup h = document.toObject(FavBackup.class);
-                            Log.i(TAG, "onComplete: "+h.getList().size());
+                            FavBackup h = document.toObject(FavBackup.class);
+                            Log.i(TAG, "onComplete: " + h.getList().size());
 
 
                             favAdapter = new FavAdapter(h.getList(), getContext(), FavFragment.this);
                             recyclerView.setAdapter(favAdapter);
                             favAdapter.notifyDataSetChanged();
-                            Log.i(TAG, "onComplete:Adapter "+favAdapter.getItemCount());
+                            Log.i(TAG, "onComplete:Adapter " + favAdapter.getItemCount());
                         }
 
 
                     }
                 });
     }
+
 }

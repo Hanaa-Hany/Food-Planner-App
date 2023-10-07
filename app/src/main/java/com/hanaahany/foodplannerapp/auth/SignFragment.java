@@ -3,13 +3,6 @@ package com.hanaahany.foodplannerapp.auth;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +10,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -35,7 +33,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.model.UserData;
 import com.hanaahany.foodplannerapp.ui.HomeActivity;
 
 public class SignFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener{
@@ -46,6 +48,12 @@ public class SignFragment extends Fragment implements GoogleApiClient.OnConnecti
     private FirebaseAuth mAuth;
     private int RC_SIGN_IN = 0;
     private GoogleApiClient mGoogleApiClient;
+    public static boolean typeAccount=false;
+    String email;
+    String userName;
+    private final StorageReference storageReference= FirebaseStorage.getInstance().getReference();
+    private final FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
+    LottieAnimationView lottieAnimationViewLoading;
     private static final String TAG = "SignFragment";
     private ProgressDialog mProgressDialog;
     @Override
@@ -126,6 +134,7 @@ public class SignFragment extends Fragment implements GoogleApiClient.OnConnecti
     @Override
     public void onStart() {
         super.onStart();
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser!=null){
             startActivity(new Intent(getActivity(),HomeActivity.class));
@@ -202,8 +211,14 @@ public class SignFragment extends Fragment implements GoogleApiClient.OnConnecti
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            email= user.getEmail();
+                            userName=user.getDisplayName();
+                            Log.i(TAG, "onComplete: "+email+userName);
+                            uploadUserData();
+                            typeAccount=true;
+                            //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -220,21 +235,24 @@ public class SignFragment extends Fragment implements GoogleApiClient.OnConnecti
         // be available.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
+    //Upload Data of user in FireStore db
+    private void uploadUserData() {
+        UserData userInfo=new UserData(email,userName,"");
+        firebaseFirestore.collection("Users")
+                .document(mAuth.getCurrentUser().getUid())
+                .set(userInfo)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            startActivity(new Intent(getActivity(), HomeActivity.class));
+                            Toast.makeText(getContext(), "Sign Up Successfully", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
-//    private void showProgressDialog() {
-//        if (mProgressDialog == null) {
-//            mProgressDialog = new ProgressDialog(getActivity());
-//            mProgressDialog.setMessage(getString(R.string.loading));
-//            mProgressDialog.setIndeterminate(true);
-//        }
-//
-//        mProgressDialog.show();
-//    }
-//
-//    private void hideProgressDialog() {
-//        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-//            mProgressDialog.hide();
-//        }
-//
-//    }
+
 }

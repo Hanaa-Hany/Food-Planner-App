@@ -16,6 +16,8 @@ public interface IConcreteLocalSource {
 
     //Delete meal to database
     void deleteMeal(Meal meal);
+    //Insert meal to database
+    void insertMealPlan(Meal meal);
 
 
 

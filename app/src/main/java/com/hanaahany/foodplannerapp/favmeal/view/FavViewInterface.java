@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface FavViewInterface {
     void showData(LiveData<List<Meal>> list);
+//    void showDataFavBackup(List<Meal> Favlist);
 }

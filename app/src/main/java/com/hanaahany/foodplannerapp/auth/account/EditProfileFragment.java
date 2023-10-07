@@ -63,7 +63,10 @@ public class EditProfileFragment extends Fragment {
             String image=EditProfileFragmentArgs.fromBundle(getArguments()).getImageUser();
             String user=EditProfileFragmentArgs.fromBundle(getArguments()).getUserName();
             textInputEditTextUserName.setHint(user);
-            Picasso.get().load(image).into(circleImageViewProfile);
+            Picasso.get().load(image)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.error)
+                    .into(circleImageViewProfile);
         }
         onClicks();
     }

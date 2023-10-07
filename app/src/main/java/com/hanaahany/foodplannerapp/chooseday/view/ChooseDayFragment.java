@@ -103,7 +103,7 @@ public class ChooseDayFragment extends Fragment implements ChooseDayViewInterfac
             public void onClick(View view) {
                 Log.i(TAG, "onClick: "+ MealDetailsFragment.ID_OF_MEAL);
                 meal.setDay(ChooseDayFragment.DAY);
-                mealPresenterInterface.insertMealToFavourite(meal);
+                mealPresenterInterface.insertMealToPlan(meal);
                 Log.i(TAG, "onClick: "+meal.getNameOfMeal());
                 Log.i(TAG, "onClick: "+meal.getDay());
                 Toast.makeText(getContext(), "Saved To Plan", Toast.LENGTH_SHORT).show();

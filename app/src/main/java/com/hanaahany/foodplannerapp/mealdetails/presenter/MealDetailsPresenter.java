@@ -31,6 +31,11 @@ public class MealDetailsPresenter implements NetworkCallBack, MealPresenterInter
 
     }
 
+    @Override
+    public void insertMealToPlan(Meal meal) {
+        _repo.insertMealFav(meal);
+    }
+
 
     @Override
     public void onSuccess(List<?> list) {

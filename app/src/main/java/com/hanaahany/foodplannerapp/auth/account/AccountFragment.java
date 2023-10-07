@@ -17,6 +17,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -25,9 +27,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hanaahany.foodplannerapp.R;
+import com.hanaahany.foodplannerapp.auth.SignFragment;
 import com.hanaahany.foodplannerapp.ui.MainActivity;
 import com.squareup.picasso.Picasso;
 
@@ -59,6 +63,9 @@ public class AccountFragment extends Fragment implements GoogleApiClient.OnConne
         initViews();
         if (!firebaseAuth.getCurrentUser().isAnonymous()) {
             getData();
+
+        }else {
+            materialButtonEditProfile.setVisibility(View.INVISIBLE);
         }
         onClicks();
 
@@ -68,7 +75,7 @@ public class AccountFragment extends Fragment implements GoogleApiClient.OnConne
         textViewSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Navigation.findNavController(getView()).navigate(R.id.action_accountFragment_to_settingFragment);
             }
         });
         textViewAbout.setOnClickListener(new View.OnClickListener() {
@@ -82,31 +89,51 @@ public class AccountFragment extends Fragment implements GoogleApiClient.OnConne
             public void onClick(View view) {
 
 
-                if (firebaseAuth.getCurrentUser().getProviderId().equals("password") || firebaseAuth.getCurrentUser().isAnonymous()) {
+
+//                if (firebaseAuth.getCurrentUser().getProviderId().equals("password") || firebaseAuth.getCurrentUser().isAnonymous()) {
+//
+
+//                    mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+//                            .enableAutoManage(getActivity(), AccountFragment.this)
+//                            .addApi(Auth.GOOGLE_SIGN_IN_API)
+//                            .build();
+//                    mGoogleApiClient.connect();
+//
+                Log.i(TAG, "onClick: "+SignFragment.typeAccount);
+                if (SignFragment.typeAccount){
+                    SignFragment.typeAccount=false;
+                    GoogleSignIn.getClient(getContext(), new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+                    ).signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                }else{
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
-                } else {
-                    mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                            .enableAutoManage(getActivity(), AccountFragment.this)
-                            .addApi(Auth.GOOGLE_SIGN_IN_API)
-                            .build();
-                    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                            new ResultCallback<Status>() {
-                                @Override
-                                public void onResult(Status status) {
-                                    FirebaseAuth.getInstance().signOut();
-                                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                                    startActivity(intent);
-                                    Toast.makeText(getActivity(), "Logout Successfully!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
                 }
+//                    Auth.GoogleSignInApi.signOut().setResultCallback(
+//                            new ResultCallback<Status>() {
+//                                @Override
+//                                public void onResult(Status status) {
+//                                    FirebaseAuth.getInstance().signOut();
+//                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+//                                    startActivity(intent);
+//                                    Toast.makeText(getActivity(), "Logout Successfully!", Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+
             }
         });
         materialButtonEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //  navController.navigate(R.id.action_accountFragment_to_editProfileFragment);
                 Navigation.findNavController(getView()).navigate(action);
             }
@@ -145,7 +172,16 @@ public class AccountFragment extends Fragment implements GoogleApiClient.OnConne
                             action =
                                     AccountFragmentDirections.actionAccountFragmentToEditProfileFragment(user.getString("imageUser"), user.getString("userName"));
 
-                            Picasso.get().load(user.getString("imageUser")).into(imageViewUser);
+                            if (!user.getString("imageUser").equals("")) {
+                                Picasso.get().load(user.getString("imageUser"))
+                                        .placeholder(R.drawable.anonymous)
+                                        .error(R.drawable.error)
+                                        .into(imageViewUser);
+                            }else {
+                                materialButtonEditProfile.setVisibility(View.INVISIBLE);
+                                imageViewUser.setImageResource(R.drawable.anonymous);
+                            }
+
                         }
                     }
                 });

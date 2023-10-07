@@ -26,7 +26,7 @@ public class ConcreteLocalSource implements IConcreteLocalSource{
         this.context=context;
         AppDataBase appDataBase=AppDataBase.getInstance(context);
         mealDAO=appDataBase.getMealDAO();
-        storedMeals=mealDAO.getMeals();
+        storedMeals=mealDAO.getMealsOfDay("no");
         storedMealsPlanSat=mealDAO.getMealsOfDay("Saturday");
         storedMealsPlanSun=mealDAO.getMealsOfDay("Sunday");
         storedMealsPlanMon=mealDAO.getMealsOfDay("Monday");
@@ -67,6 +67,16 @@ public class ConcreteLocalSource implements IConcreteLocalSource{
             @Override
             public void run() {
                 mealDAO.deleteMeal(meal);
+            }
+        }).start();
+    }
+
+    @Override
+    public void insertMealPlan(Meal meal) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mealDAO.insertMealPlan(meal);
             }
         }).start();
     }

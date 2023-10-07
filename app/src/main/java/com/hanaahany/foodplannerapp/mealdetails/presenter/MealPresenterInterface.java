@@ -7,6 +7,7 @@ public interface MealPresenterInterface {
     void getMeal();
     void insertMealToFavourite(Meal meal);
     void deleteMeal(Meal meal);
+    void insertMealToPlan(Meal meal);
 
 
 //    void updateDayOfMeal(String id, String day);

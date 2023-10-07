@@ -12,8 +12,8 @@ import com.hanaahany.foodplannerapp.model.Meal;
 import java.util.List;
 @Dao
 public interface MealDAO {
-    @Query("SELECT * FROM Meal_Table")
-    LiveData<List<Meal>> getMeals();
+//    @Query("SELECT * FROM Meal_Table")
+//    LiveData<List<Meal>> getMeals();
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMeal(Meal meal);
     @Delete
@@ -23,6 +23,8 @@ public interface MealDAO {
 
     @Query("UPDATE Meal_Table SET day = :day WHERE id = :id")
     void updateColumnDay(String id, String day);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertMealPlan(Meal meal);
 
 //    @Query("SELECT * FROM Meal_Table")
 //    LiveData<List<Meal>> getMealsPlan();

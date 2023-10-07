@@ -61,12 +61,12 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
     RecyclerView recyclerViewIngredients;
     private static final String TAG = "MealDetailsFragmentRes";
     MaterialButton materialButtonFav,materialButtonPlan;
-    Meal meal;
+    private static Meal meal;
     String id;
     private final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    public static List<Meal>meals=new ArrayList<>();
+//    public static List<Meal>meals=new ArrayList<>();
 
 
     @Override
@@ -101,11 +101,12 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
         materialButtonFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               // meals.add(meal);
+                //backupFav(meals);
+               // Log.i(TAG, "onClick: "+meals.size());
                 mealPresenterInterface.insertMealToFavourite(meal);
 
-                meals.add(meal);
-                backupFav(meals);
-                Log.i(TAG, "onClick: "+meals.size());
+
                 Toast.makeText(getContext(), "Saved to fav", Toast.LENGTH_SHORT).show();
             }
         });
@@ -239,22 +240,6 @@ public class MealDetailsFragment extends Fragment implements MealDetailsViewInte
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, System.currentTimeMillis() + (60 * 60 * 1000)); // End time is 1 hour after start time
         startActivity(intent);
     }
-    private void backupFav(List mealFav) {
-        //
-        Map<String, List<Meal>> docData = new HashMap<>();
-        docData.put("List", mealFav);
-        firebaseFirestore.collection("FavMeal")
-                .document(firebaseAuth.getCurrentUser().getUid())
-                .set(docData)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Backup Fav Successfully", Toast.LENGTH_SHORT).show();
-                        } else
-                            Toast.makeText(getContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
+
 
 }

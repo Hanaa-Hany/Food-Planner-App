@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Food Planner App</string>
+    <string name="app_name">Foodex</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email">Email</string>
@@ -110,8 +110,35 @@
         <item>https:/www.themealdb.com/images/ingredients/Cardamom.png</item>
         <item>https:/www.themealdb.com/images/ingredients/Carrots.png</item>
         <item>https:/www.themealdb.com/images/ingredients/Cashew Nuts.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Cashews.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Caster Sugar.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Cayenne Pepper.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Celeriac.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Celery.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Celery Salt.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Challots.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Charlotte Potatoes.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Cheddar Cheese.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Cheese.png</item>
 
 
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Salmon.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Beef.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Pork.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Avocado.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Salmon.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Beef.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Pork.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Avocado.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
+        <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
         <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
         <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>
         <item>https:/www.themealdb.com/images/ingredients/Chicken.png</item>

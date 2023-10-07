@@ -92,7 +92,7 @@
                 app:layout_constraintStart_toStartOf="@id/layout_email"
                 app:layout_constraintTop_toBottomOf="@id/layout_email"
                 app:startIconDrawable="@drawable/ic_lock"
-
+                app:passwordToggleEnabled="true"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText

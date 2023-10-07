@@ -200,7 +200,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
         SearchFragmentDirections.ActionSearchFragmentToCountryMealsFragment action=
                 SearchFragmentDirections.actionSearchFragmentToCountryMealsFragment(name);
         Navigation.findNavController(getView()).navigate(action);
-        Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -209,7 +209,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
         SearchFragmentDirections.ActionSearchFragmentToIngredientMealsFragment action=
                 SearchFragmentDirections.actionSearchFragmentToIngredientMealsFragment(nameOfIngredient);
         Navigation.findNavController(getView()).navigate(action);
-        Toast.makeText(getContext(), nameOfIngredient, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), nameOfIngredient, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -217,6 +217,6 @@ public class SearchFragment extends Fragment implements SearchViewInterface, OnC
         SearchFragmentDirections.ActionSearchFragmentToMealDetailsFragment action=
                 SearchFragmentDirections.actionSearchFragmentToMealDetailsFragment(id);
         Navigation.findNavController(getView()).navigate(action);
-        Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
     }
 }
